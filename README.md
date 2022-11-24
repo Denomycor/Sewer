@@ -1,3 +1,3 @@
 # Sewer
-This is the start o something great :)
+This is the start of something great :)
 
