@@ -19,5 +19,5 @@ polygon = PoolVector2Array( 10, -20, 10, 20, -10, 20, -10, -20 )
 
 [node name="Cursor" type="Polygon2D" parent="KinematicBody2D"]
 color = Color( 0.109804, 0.792157, 0.552941, 1 )
-polygon = PoolVector2Array( 16, -8, 16, 8, 24, 0 )
+polygon = PoolVector2Array( 16, -6, 16, 6, 35, 0 )
 script = ExtResource( 2 )

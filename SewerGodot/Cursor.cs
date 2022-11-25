@@ -16,8 +16,12 @@ public class Cursor : Polygon2D
 
         if(mousePosition.Length()!=0)
             angle = Mathf.Acos(mousePosition.x/mousePosition.Length());
-        if(mousePosition.y<0)
+        if(mousePosition.y<0){
             angle *= -1;
+            ZIndex = -1;
+        }else{
+            ZIndex = 1;
+        }
 
         return angle;
     }
