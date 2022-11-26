@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[node name="UpgradeMenuObj" type="Control"]
+margin_left = 965.0
+margin_top = 514.0
+margin_right = 1029.0
+margin_bottom = 578.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
