@@ -20,14 +20,17 @@ anchor_right = 1.0
 margin_left = -192.0
 margin_bottom = 1080.0
 rect_min_size = Vector2( 192, 0 )
+mouse_filter = 1
 
 [node name="ScrollPanel" type="Panel" parent="Main/RightPanel"]
 margin_right = 192.0
 margin_bottom = 1080.0
+mouse_filter = 1
 
 [node name="Scroll" type="ScrollContainer" parent="Main/RightPanel/ScrollPanel"]
 margin_right = 192.0
 margin_bottom = 1080.0
+mouse_filter = 1
 scroll_horizontal_enabled = false
 
 [node name="List" type="VBoxContainer" parent="Main/RightPanel/ScrollPanel/Scroll"]
