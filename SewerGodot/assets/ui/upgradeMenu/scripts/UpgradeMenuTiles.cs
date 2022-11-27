@@ -1,13 +1,13 @@
 using Godot;
-using System;
 
 /* Handles operations of the Upgrade Menu on the tile system
  * 
  */
 public class UpgradeMenuTiles : Node2D{
 
-    //Node Vars
+    //Node vars
     public TileMap tileMap {get;set;}
+    public UpgradeMenu upgradeMenu {get;set;}
 
     //State vars
     public bool beingDragged {get;set;}
@@ -15,6 +15,7 @@ public class UpgradeMenuTiles : Node2D{
 
     public override void _Ready() {
         tileMap = GetNode<TileMap>("TileMap");
+
     }
 
     public override void _UnhandledInput(InputEvent e){
