@@ -3,6 +3,14 @@ using System;
 
 public class Cursor : Polygon2D
 {
+
+    CanvasItem _parent;
+
+    public override void _Ready()
+    {
+        _parent = (CanvasItem)GetParent();
+    }
+
     public override void _Process(float delta)
     {
         Rotation = GetAngleFromMouse();
@@ -10,8 +18,7 @@ public class Cursor : Polygon2D
 
     //returns angle of mouse in relation to center of the player
     private float GetAngleFromMouse(){
-        CanvasItem parent = (CanvasItem)GetParent();
-        Vector2 mousePosition = parent.GetLocalMousePosition();
+        Vector2 mousePosition = _parent.GetLocalMousePosition();
         float angle = 0;
 
         if(mousePosition.Length()!=0)
