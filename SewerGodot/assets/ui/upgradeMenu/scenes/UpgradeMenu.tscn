@@ -20,29 +20,34 @@ anchor_right = 1.0
 margin_left = -192.0
 margin_bottom = 1080.0
 rect_min_size = Vector2( 192, 0 )
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="ScrollPanel" type="Panel" parent="Main/RightPanel"]
 margin_right = 192.0
 margin_bottom = 1080.0
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="Scroll" type="ScrollContainer" parent="Main/RightPanel/ScrollPanel"]
 margin_right = 192.0
 margin_bottom = 1080.0
-mouse_filter = 1
+mouse_filter = 2
 scroll_horizontal_enabled = false
 
 [node name="List" type="VBoxContainer" parent="Main/RightPanel/ScrollPanel/Scroll"]
-custom_constants/separation = 64
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/separation = 0
 
 [node name="Grid" type="GridContainer" parent="Main/RightPanel/ScrollPanel/Scroll/List"]
-custom_constants/vseparation = 64
-custom_constants/hseparation = 64
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 columns = 3
 
 [node name="UpgradeMenuObj" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
+__meta__ = {
+"_edit_use_anchors_": true
+}

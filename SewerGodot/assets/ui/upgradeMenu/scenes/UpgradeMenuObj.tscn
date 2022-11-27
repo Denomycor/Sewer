@@ -4,14 +4,10 @@
 [ext_resource path="res://assets/ui/upgradeMenu/scripts/UpgradeMenuObj.cs" type="Script" id=2]
 
 [node name="UpgradeMenuObj" type="Control"]
-margin_left = 965.0
-margin_top = 514.0
-margin_right = 1029.0
-margin_bottom = 578.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -19,4 +19,9 @@ public class UpgradeMenuObj : Control {
         this.upgradeMenu = upgradeMenu;
         this.upgradeMenuTiles = upgradeMenuTiles;
     }
+
+    public override object GetDragData(Vector2 _){
+        GD.Print("test");
+        return this;
+    }
 }
