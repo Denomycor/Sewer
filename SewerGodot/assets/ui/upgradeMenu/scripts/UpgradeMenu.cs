@@ -9,7 +9,7 @@ public class UpgradeMenu : Control {
     public static readonly int STD_CELL_SIZE = 64;
 
     //Node vars
-    public UpgradeMenuTiles upgradeMenuTiles {get;set;}
+    public UpgradeMenuTiles upgradeMenuTiles {get;set;} //Unused
     public GridContainer grid {get;set;}
     
 
@@ -18,16 +18,8 @@ public class UpgradeMenu : Control {
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
-        SetChildParents();
-
         //Temp init pre-existing UpgradeMenuObj
-        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this, upgradeMenuTiles);
-    }
-
-
-    //Give child nodes with scripts a reference to UpgradeMenu
-    private void SetChildParents(){
-        upgradeMenuTiles.upgradeMenu = this;
+        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
     }
 
 }

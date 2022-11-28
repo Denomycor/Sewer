@@ -6,8 +6,7 @@ using Godot;
 public class UpgradeMenuObj : Control {
 
     //Node vars
-    public UpgradeMenu upgradeMenu {get;set;}
-    public UpgradeMenuTiles upgradeMenuTiles {get;set;}
+    public UpgradeMenu upgradeMenu {get;set;} //Unused
 
     //Stat vars
     public UpgradeInfo info {get;set;}
@@ -18,9 +17,8 @@ public class UpgradeMenuObj : Control {
 
 
 
-    public void Init(UpgradeMenu upgradeMenu, UpgradeMenuTiles upgradeMenuTiles){
+    public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
-        this.upgradeMenuTiles = upgradeMenuTiles;
     }
 
 

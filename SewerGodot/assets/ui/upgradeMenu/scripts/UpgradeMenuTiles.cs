@@ -7,7 +7,6 @@ public class UpgradeMenuTiles : Control{
 
     //Node vars
     public TileMap tileMap {get;set;}
-    public UpgradeMenu upgradeMenu {get;set;}
 
     //State vars
     public bool beingDragged {get;set;}
@@ -35,8 +34,8 @@ public class UpgradeMenuTiles : Control{
 
 
     //Check if a given UpgradeMenuObj can be placed at position in the tileMap
-    private bool CheckGridPlacement(Vector2 position, UpgradeMenuObj obj){
-        //TODO:
+    private bool CheckTilePlacement(Vector2 position, UpgradeMenuObj obj){
+        //TODO: check if other obj is there, check compatibility of connections
         return true;
     }
 
@@ -44,7 +43,7 @@ public class UpgradeMenuTiles : Control{
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             //Is a UpgradeMenuObj
-            return CheckGridPlacement(position, obj);
+            return CheckTilePlacement(position, obj);
         }
 
         return false;
@@ -54,9 +53,12 @@ public class UpgradeMenuTiles : Control{
 
     //Place UpgradeMenuObj in the tileMap and snap to grid
     private void PlaceObj(Vector2 position, UpgradeMenuObj obj){
+        obj.inUse = true;
         obj.GetParent().RemoveChild(obj);
         this.tileMap.AddChild(obj);
-        obj.RectPosition =  tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.STD_CELL_SIZE ;
+        obj.RectPosition =  tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.STD_CELL_SIZE;
+
+        //TODO: Calculate state of objs after connections
     }
 
     public override void DropData(Vector2 position, object data) {

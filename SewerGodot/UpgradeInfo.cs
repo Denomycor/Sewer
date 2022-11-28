@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 /* Represents stats and info of an UpgradeObj
  *
