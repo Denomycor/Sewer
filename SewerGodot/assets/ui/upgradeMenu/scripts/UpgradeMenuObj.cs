@@ -26,7 +26,6 @@ public class UpgradeMenuObj : Control {
 
 
     public override object GetDragData(Vector2 _){
-        GD.Print("test");
         return this;
     }
 

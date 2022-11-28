@@ -20,7 +20,7 @@ public class UpgradeMenuTiles : Control{
 
 
 
-    public override void _UnhandledInput(InputEvent e){
+    public override void _GuiInput(InputEvent e){
         if(e.IsActionPressed("pan")){
             beingDragged = true;
         }
@@ -56,7 +56,7 @@ public class UpgradeMenuTiles : Control{
     private void PlaceObj(Vector2 position, UpgradeMenuObj obj){
         obj.GetParent().RemoveChild(obj);
         this.tileMap.AddChild(obj);
-        obj.RectPosition = this.tileMap.WorldToMap(position) * UpgradeMenu.STD_CELL_SIZE;
+        obj.RectPosition =  tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.STD_CELL_SIZE ;
     }
 
     public override void DropData(Vector2 position, object data) {
