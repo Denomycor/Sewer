@@ -35,7 +35,7 @@ public class UpgradeMenuTiles : Control{
 
     //Check if a given UpgradeMenuObj can be placed at position in the tileMap
     private bool CheckTilePlacement(Vector2 position, UpgradeMenuObj obj){
-        //TODO: check if other obj is there, check compatibility of connections
+        //TODO: check compatibility of connections
         return true;
     }
 
@@ -56,7 +56,7 @@ public class UpgradeMenuTiles : Control{
         obj.inUse = true;
         obj.GetParent().RemoveChild(obj);
         this.tileMap.AddChild(obj);
-        obj.RectPosition =  tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.STD_CELL_SIZE;
+        obj.RectPosition = tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.STD_CELL_SIZE;
 
         //TODO: Calculate state of objs after connections
     }

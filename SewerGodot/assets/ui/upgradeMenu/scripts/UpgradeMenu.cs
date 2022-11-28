@@ -20,6 +20,7 @@ public class UpgradeMenu : Control {
 
         //Temp init pre-existing UpgradeMenuObj
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
+        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj2").Init(this);
     }
 
 }

@@ -33,13 +33,13 @@ scroll_horizontal_enabled = false
 script = ExtResource( 4 )
 
 [node name="List" type="VBoxContainer" parent="Main/RightPanel/ScrollPanel/Scroll"]
-margin_right = 64.0
+margin_right = 128.0
 margin_bottom = 64.0
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="Grid" type="GridContainer" parent="Main/RightPanel/ScrollPanel/Scroll/List"]
-margin_right = 64.0
+margin_right = 128.0
 margin_bottom = 64.0
 mouse_filter = 2
 custom_constants/vseparation = 0
@@ -47,6 +47,14 @@ custom_constants/hseparation = 0
 columns = 3
 
 [node name="UpgradeMenuObj" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="UpgradeMenuObj2" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
+modulate = Color( 0.639216, 0.894118, 0.129412, 1 )
+margin_left = 64.0
+margin_right = 128.0
 __meta__ = {
 "_edit_use_anchors_": true
 }
