@@ -1,12 +1,12 @@
 using Godot;
 
-/* Menu for configuring the upgrade system
+/* Menu for configuring the upgrade system, Root of Upgrade Menu
  *
  */
 public class UpgradeMenu : Control {
     
     //Constants
-    public static readonly int STD_CELL_SIZE = 64;
+    public static readonly int IEM_SIZE = 64;
 
     //Node vars
     public UpgradeMenuTiles upgradeMenuTiles {get;set;} //Unused
@@ -18,7 +18,7 @@ public class UpgradeMenu : Control {
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
-        //Temp init pre-existing UpgradeMenuObj
+        //FIXME: temp, init pre-existing UpgradeMenuObj
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj2").Init(this);
     }

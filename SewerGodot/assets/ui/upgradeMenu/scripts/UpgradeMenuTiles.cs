@@ -1,6 +1,6 @@
 using Godot;
 
-/* Handles operations of the Upgrade Menu on the tile system
+/* Tile system, handles drag logic in the tiles and panning mechanics
  * 
  */
 public class UpgradeMenuTiles : Control{
@@ -56,7 +56,7 @@ public class UpgradeMenuTiles : Control{
         obj.inUse = true;
         obj.GetParent().RemoveChild(obj);
         this.tileMap.AddChild(obj);
-        obj.RectPosition = tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.STD_CELL_SIZE;
+        obj.RectPosition = tileMap.WorldToMap(position - tileMap.Position) * UpgradeMenu.IEM_SIZE;
 
         //TODO: Calculate state of objs after connections
     }

@@ -1,6 +1,6 @@
 using Godot;
 
-/* Right Panel grouping objects
+/* Right Panel grouping objects, handles drag logic in the right grid
  *
  */
 public class UpgradeMenuScroll : ScrollContainer {

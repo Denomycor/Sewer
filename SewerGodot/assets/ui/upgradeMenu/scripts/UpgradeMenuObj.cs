@@ -1,6 +1,6 @@
 using Godot;
 
-/* Upgrade Object on the Upgrade Menu
+/* Upgrade Object on the Upgrade Menu, handles a lot of stuff
  *
  */
 public class UpgradeMenuObj : Control {
@@ -86,4 +86,5 @@ public class UpgradeMenuObj : Control {
             }
         }
     }
+    
 }
