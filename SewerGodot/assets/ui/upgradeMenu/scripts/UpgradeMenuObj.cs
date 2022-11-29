@@ -10,7 +10,7 @@ public class UpgradeMenuObj : Control {
     public UpgradeMenuTiles upgradeMenuTiles {get;set;}
 
     //Stat vars
-    public UpgradeInfo info {get;set;}
+    public Upgrade upgradeRef {get;set;}
     public bool isStatic {get;set;} = false;
 
     //State vars
