@@ -4,11 +4,11 @@ using System;
 public class Cursor : Polygon2D
 {
 
-    CanvasItem _parent;
+    Node2D _parent;
 
     public override void _Ready()
     {
-        _parent = (CanvasItem)GetParent();
+        _parent = (Node2D)GetParent();
     }
 
     public override void _Process(float delta)
@@ -25,10 +25,9 @@ public class Cursor : Polygon2D
             angle = Mathf.Acos(mousePosition.x/mousePosition.Length());
         if(mousePosition.y<0){
             angle *= -1;
-            ZIndex = -1;
+            ZIndex = _parent.ZIndex-1;
         }else{
-            ZIndex = 1;
-        }
+            ZIndex = _parent.ZIndex+1;        }
 
         return angle;
     }

@@ -30,9 +30,9 @@ public class EnemyCursor : Polygon2D
             angle = Mathf.Acos(playerPosition.x/playerPosition.Length());
         if(playerPosition.y<0){
             angle *= -1;
-            ZIndex = -1;
+            ZIndex = _parent.ZIndex-1;
         }else{
-            ZIndex = 1;
+            ZIndex = _parent.ZIndex+1;
         }
 
         return angle;
