@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/EnemyCursor.cs" type="Script" id=1]
-[ext_resource path="res://src/Enemy.cs" type="Script" id=2]
-[ext_resource path="res://src/CheckForZIndex.cs" type="Script" id=3]
+[ext_resource path="res://assests/enemy/src/EnemyCursor.cs" type="Script" id=1]
+[ext_resource path="res://assests/enemy/src/Enemy.cs" type="Script" id=2]
+[ext_resource path="res://assests/game/src/CheckForZIndex.cs" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 0.0
