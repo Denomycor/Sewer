@@ -45,7 +45,11 @@ public class UpgradeMenuObj : Control {
     //Always can place on other obj place unless they are both on grid
     public bool CanGoOnThis(UpgradeMenuObj obj){
         //TODO: Can the obj(s) going on the grid be placed in the cell?
-        return this.inUse || obj.inUse;
+        if((this.isStatic && obj.inUse) || (this.inUse && obj.isStatic)){
+            return true;
+        }else{
+            return this.inUse || obj.inUse;
+        }
     }
 
     public override bool CanDropData(Vector2 position, object data) {
