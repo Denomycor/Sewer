@@ -17,6 +17,8 @@ public class EnemyCursor : Polygon2D
     {
         if(_player!=null)
             Rotation = GetAngleFromPlayer();
+        GD.Print("Enemy " + _parent.ZIndex);
+        GD.Print("Enemy Cursor" + ZIndex);
     }
 
     //returns angle of mouse in relation to center of the player
@@ -30,9 +32,9 @@ public class EnemyCursor : Polygon2D
             angle = Mathf.Acos(playerPosition.x/playerPosition.Length());
         if(playerPosition.y<0){
             angle *= -1;
-            ZIndex = _parent.ZIndex-1;
+            ZIndex = -1;
         }else{
-            ZIndex = _parent.ZIndex+1;
+            ZIndex = 1;
         }
 
         return angle;

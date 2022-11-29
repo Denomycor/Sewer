@@ -7,7 +7,6 @@
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 495, 236 )
-z_index = 1
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 290, 236 )
