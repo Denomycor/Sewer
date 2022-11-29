@@ -6,10 +6,11 @@ using Godot;
 public class UpgradeMenu : Control {
     
     //Constants
+    //Size of tileMap
     public static readonly int IEM_SIZE = 64;
 
     //Node vars
-    public UpgradeMenuTiles upgradeMenuTiles {get;set;} //Unused
+    public UpgradeMenuTiles upgradeMenuTiles {get;set;}
     public GridContainer grid {get;set;}
     
 
@@ -18,7 +19,7 @@ public class UpgradeMenu : Control {
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
-        //FIXME: temp, init pre-existing UpgradeMenuObj
+        //FIXME: temp, init pre-existing UpgradeMenuObj, on the final products all instances of this scene are created dinamycally
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj2").Init(this);
     }

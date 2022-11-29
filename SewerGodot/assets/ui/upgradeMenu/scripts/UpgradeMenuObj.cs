@@ -30,9 +30,21 @@ public class UpgradeMenuObj : Control {
     }
 
 
+/// Drag system - Checks on where it can be dropped
+
+    //Check if a given UpgradeMenuObj can be placed at the grid
+    public bool CanGoOnGrid(){
+        return inUse && !isStatic;
+    }
+
+    public bool CanGoOnTile(Vector2 position){
+        //TODO: Can this objs be palced on this cell?
+        return true;
+    }
 
     //Always can place on other obj place unless they are both on grid
-    private bool CheckTilePlacement(UpgradeMenuObj obj){
+    public bool CanGoOnThis(UpgradeMenuObj obj){
+        //TODO: Can the obj(s) going on the grid be placed in the cell?
         return this.inUse || obj.inUse;
     }
 
@@ -40,49 +52,62 @@ public class UpgradeMenuObj : Control {
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             //Is a UpgradeMenuObj
-            return CheckTilePlacement(obj);
+            return CanGoOnThis(obj);
         }
 
         return false;
     }
 
 
+/// Drag system - Places objs in new positions
 
-    //Switch place with other obj
-    private void SwitchPosWith(UpgradeMenuObj obj){
+    //Switch places with objs
+    public void SwitchPos(UpgradeMenuObj obj2){
         Vector2 temp = this.RectPosition;
-        this.RectPosition = obj.RectPosition;
-        obj.RectPosition = temp;
+        this.RectPosition = obj2.RectPosition;
+        obj2.RectPosition = temp;
     }
 
-    //Switch but other obj is on grid
-    private void SwitchFromGridToTile(UpgradeMenuObj obj){
+    //Switch containers with obj
+    public void SwitchContainers(UpgradeMenuObj obj){
         obj.inUse = true;
         obj.GetParent().RemoveChild(obj);
-        upgradeMenuTiles.tileMap.AddChild(obj);
+        this.upgradeMenuTiles.tileMap.AddChild(obj);
         obj.RectPosition = this.RectPosition;
 
         this.inUse = false;
         this.GetParent().RemoveChild(this);
+        this.upgradeMenu.grid.AddChild(this);
+    }
+
+    //Place on grid
+    public void PlaceOnGrid(){
+        inUse = false;
+        GetParent().RemoveChild(this);
         upgradeMenu.grid.AddChild(this);
     }
 
-    //Put in grid anyways
-    private void PlaceOnGrid(UpgradeMenuObj obj){
-        obj.inUse = false;
-        obj.GetParent().RemoveChild(obj);
-        upgradeMenu.grid.AddChild(obj);
+    //Place on TileMap
+    public void PlaceOnTiles(Vector2 position){
+        TileMap tile = upgradeMenu.upgradeMenuTiles.tileMap;
+        
+        inUse = true;
+        GetParent().RemoveChild(this);
+        tile.AddChild(this);
+        RectPosition = tile.WorldToMap(position - tile.Position) * UpgradeMenu.IEM_SIZE;
+
+        //TODO: ReCalculate state of objs after connections
     }
 
     public override void DropData(Vector2 position, object data) {
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             if(this.inUse && obj.inUse){
-                SwitchPosWith(obj);
+                SwitchPos(obj);
             }else if(this.inUse && !obj.inUse){
-                SwitchFromGridToTile(obj);
+                SwitchContainers(obj);
             }else if(!this.inUse && obj.inUse){
-                PlaceOnGrid(obj);
+                obj.PlaceOnGrid();
             }
         }
     }

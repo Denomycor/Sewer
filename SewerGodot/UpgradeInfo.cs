@@ -1,6 +1,6 @@
 using Godot;
 
-/* Represents stats and info of an UpgradeObj
+/* Represents stats and info of an UpgradeMenuObj
  *
  */
 public class UpgradeInfo {

@@ -16,37 +16,21 @@ public class UpgradeMenuScroll : ScrollContainer {
 
 
 
-    //Check if a given UpgradeMenuObj can be placed at position in the grid
-    private bool CheckGridPlacement(Vector2 position, UpgradeMenuObj obj){
-        return obj.inUse && !obj.isStatic;
-    }
-
     public override bool CanDropData(Vector2 position, object data){
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             //Is a UpgradeMenuObj
-            return CheckGridPlacement(position, obj);
+            return obj.CanGoOnGrid();
         }
 
         return false;
-    }
-
-
-
-    //Place UpgradeMenuObj in the grid
-    private void PlaceObj(Vector2 position, UpgradeMenuObj obj){
-        obj.inUse = false;
-        obj.GetParent().RemoveChild(obj);
-        this.grid.AddChild(obj);
-
-        //TODO: Calculate state of objs after removing connections
     }
 
     public override void DropData(Vector2 position, object data) {
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             //Is a UpgradeMenuObj
-            PlaceObj(position, obj);
+            obj.PlaceOnGrid();
         }
     }
 
