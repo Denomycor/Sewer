@@ -1,14 +1,22 @@
 using Godot;
 using System;
-
+/* Handles basic player AI and holds stats
+ *
+ */
 public class Enemy : Entity
 {
+    //refence to player
     private Node2D _player;
+
+    //stats vars
     private float _moveSpeed = 200f;
     private float _range = 120f;
     private float _damage;
     private float _armour;
 
+
+
+    //find player reference
     public override void _Ready()
     {
         _player = (Node2D)GetParent().FindNode("Player");

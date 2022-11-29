@@ -1,18 +1,25 @@
 using Godot;
 using System;
 
+/* Script for setting enemy cursor to the intended position and height
+ *
+ */
 public class EnemyCursor : Polygon2D
 {
-
+    //enemy reference
     private Node2D _parent;
+
+    //player reference
     private Node2D _player;
 
+    //initializing these references
     public override void _Ready()
     {
         _parent = (Node2D)GetParent();
         _player = (Node2D)GetParent().GetParent().FindNode("Player");
     }
 
+    //sets cursor rotation to the angle pointing to the player
     public override void _Process(float delta)
     {
         if(_player!=null)
@@ -28,6 +35,7 @@ public class EnemyCursor : Polygon2D
 
         if(playerPosition.Length()!=0)
             angle = Mathf.Acos(playerPosition.x/playerPosition.Length());
+        //sets zindex of cursor depending on if it is above or below player
         if(playerPosition.y<0){
             angle *= -1;
             ZIndex = -1;
