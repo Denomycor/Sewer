@@ -14,8 +14,6 @@ public class Cursor : Polygon2D
     public override void _Process(float delta)
     {
         Rotation = GetAngleFromMouse();
-        GD.Print("Player " + _parent.ZIndex);
-        GD.Print("Player Cursor" + ZIndex);
     }
 
     //returns angle of mouse in relation to center of the player
