@@ -30,9 +30,9 @@ public class Cursor : Polygon2D
         //sets zindex of cursor depending on if it is above or below player
         if(mousePosition.y<0){
             angle *= -1;
-            ZIndex = _parent.ZIndex-1;
+            ZIndex = -1;
         }else{
-            ZIndex = _parent.ZIndex+1;        }
+            ZIndex = 1;        }
 
         return angle;
     }
