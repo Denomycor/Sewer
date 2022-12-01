@@ -32,6 +32,10 @@ public class UpgradeMenuObj : Control {
             if(emb.ButtonIndex == (int)ButtonList.Right && emb.Pressed){
                 upgradeMenuContext.Reload(this);
             }
+
+            if(emb.ButtonIndex == (int)ButtonList.Left && emb.Pressed && emb.Doubleclick && CanGoOnGrid()){
+                PlaceOnGrid();
+            }
         }
     }
 
@@ -50,13 +54,11 @@ public class UpgradeMenuObj : Control {
 
     //Checks if an obj can be placed on tile
     public bool CanGoOnTile(Vector2 position){
-        //TODO: Can this objs be palced on this cell?
         return true;
     }
 
     //Always can place on other obj place unless they are both on grid
     public bool CanGoOnThis(UpgradeMenuObj obj){
-        //TODO: Can the obj(s) going on the grid be placed in the cell?
         if((this.isStatic && obj.inUse) || (this.inUse && obj.isStatic)){
             return true;
         }else{
@@ -111,8 +113,6 @@ public class UpgradeMenuObj : Control {
         GetParent().RemoveChild(this);
         tile.AddChild(this);
         RectPosition = tile.WorldToMap(position - tile.Position) * UpgradeMenu.IEM_SIZE;
-
-        //TODO: ReCalculate state of objs after connections
     }
 
     public override void DropData(Vector2 position, object data) {
