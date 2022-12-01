@@ -6,10 +6,10 @@ using Godot;
 public class UpgradeMenuTiles : Control{
 
     //Node vars
-    public TileMap tileMap {get;set;}
+    public TileMap tileMap;
 
     //State vars
-    public bool beingDragged {get;set;}
+    public bool beingDragged = false;
 
 
 
@@ -27,7 +27,7 @@ public class UpgradeMenuTiles : Control{
             beingDragged = false;
         }
         if(e is InputEventMouseMotion && beingDragged){
-            //TODO: not being able to paan over the limit of tileMap
+            //TODO: not being able to pan over the limit of tileMap
             tileMap.Position += (e as InputEventMouseMotion).Relative;
         }
     }

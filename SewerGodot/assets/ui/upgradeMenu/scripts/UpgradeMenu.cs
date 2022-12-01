@@ -10,8 +10,8 @@ public class UpgradeMenu : Control {
     public static readonly int IEM_SIZE = 64;
 
     //Node vars
-    public UpgradeMenuTiles upgradeMenuTiles {get;set;}
-    public GridContainer grid {get;set;}
+    public UpgradeMenuTiles upgradeMenuTiles;
+    public GridContainer grid;
     
 
 

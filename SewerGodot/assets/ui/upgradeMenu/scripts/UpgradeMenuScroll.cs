@@ -6,7 +6,7 @@ using Godot;
 public class UpgradeMenuScroll : ScrollContainer {
     
     //Node vars
-    public GridContainer grid {get;set;}
+    public GridContainer grid;
 
 
 

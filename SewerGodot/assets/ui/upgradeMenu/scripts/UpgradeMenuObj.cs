@@ -6,23 +6,34 @@ using Godot;
 public class UpgradeMenuObj : Control {
 
     //Node vars
-    public UpgradeMenu upgradeMenu {get;set;}
-    public UpgradeMenuTiles upgradeMenuTiles {get;set;}
+    public UpgradeMenu upgradeMenu;
+    public UpgradeMenuTiles upgradeMenuTiles;
+    public UpgradeMenuContext upgradeMenuContext;
 
     //Stat vars
-    public Upgrade upgradeRef {get;set;}
-    public bool isStatic {get;set;} = false;
+    public Upgrade upgradeRef;
+    public bool isStatic = false;
 
     //State vars
-    public bool inUse {get;set;} = false;
+    public bool inUse = false;
 
 
 
     public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
         upgradeMenuTiles = upgradeMenu.upgradeMenuTiles;
+        upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
     }
 
+
+    public override void _GuiInput(InputEvent e){
+        if(e is InputEventMouseButton){
+            InputEventMouseButton emb = e as InputEventMouseButton;
+            if(emb.ButtonIndex == (int)ButtonList.Right && emb.Pressed){
+                upgradeMenuContext.Reload(this);
+            }
+        }
+    }
 
 
     public override object GetDragData(Vector2 _){
@@ -37,6 +48,7 @@ public class UpgradeMenuObj : Control {
         return inUse && !isStatic;
     }
 
+    //Checks if an obj can be placed on tile
     public bool CanGoOnTile(Vector2 position){
         //TODO: Can this objs be palced on this cell?
         return true;
