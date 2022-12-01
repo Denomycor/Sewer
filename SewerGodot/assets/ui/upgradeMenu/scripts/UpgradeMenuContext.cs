@@ -50,7 +50,8 @@ public class UpgradeMenuContext : Control {
 
     public override void _Input(InputEvent e) {
         if(e is InputEventMouseButton){
-            if((e as InputEventMouseButton).Pressed){
+            InputEventMouseButton emb = e as InputEventMouseButton;
+            if(emb.Pressed && !GetRect().HasPoint(emb.Position)){
                 HideWindow();
             }
         }
