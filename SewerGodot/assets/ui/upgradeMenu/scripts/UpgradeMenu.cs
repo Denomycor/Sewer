@@ -14,14 +14,14 @@ public class UpgradeMenu : Control {
     public GridContainer grid;
     
     //State vars
-    Matrix<Upgrade> record;
+    public Matrix<UpgradeMenuObj> record;
 
 
     public override void _Ready(){
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
-        record = new Matrix<Upgrade>(upgradeMenuTiles.tileMap.GetUsedRect());
+        record = new Matrix<UpgradeMenuObj>(upgradeMenuTiles.tileMap.GetUsedRect());
 
         //FIXME: temp, init pre-existing UpgradeMenuObj, on the final products all instances of this scene are created dinamycally
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);

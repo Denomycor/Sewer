@@ -16,10 +16,13 @@ public class UpgradeMenuObj : Control {
 
     //State vars
     public bool inUse = false;
+    public Matrix<UpgradeMenuObj> recordRef;
+    
 
     public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
         upgradeMenuTiles = upgradeMenu.upgradeMenuTiles;
+        recordRef = upgradeMenu.record;
         upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
     }
 
@@ -35,6 +38,17 @@ public class UpgradeMenuObj : Control {
                 PlaceOnGrid();
             }
         }
+    }
+
+    //Gets the cell position on the tileMap
+    public Vector2 GetTilePos(){
+        return RectPosition / UpgradeMenu.IEM_SIZE;
+    }
+
+
+    //Sets obj position given the desired cell coordinates
+    public void SetPosThroughTile(Vector2 pos){
+        RectPosition = pos * UpgradeMenu.IEM_SIZE;
     }
 
 
@@ -78,10 +92,14 @@ public class UpgradeMenuObj : Control {
 /// Drag system - Places objs in new positions
 
     //Switch places with objs
-    public void SwitchPos(UpgradeMenuObj obj2){
+    public void SwitchPos(UpgradeMenuObj obj){
         Vector2 temp = this.RectPosition;
-        this.RectPosition = obj2.RectPosition;
-        obj2.RectPosition = temp;
+        this.RectPosition = obj.RectPosition;
+        obj.RectPosition = temp;
+
+        recordRef.Set(obj.GetTilePos(), obj);
+        recordRef.Set(this.GetTilePos(), this);
+
     }
 
     //Switch containers with obj
@@ -91,13 +109,18 @@ public class UpgradeMenuObj : Control {
         this.upgradeMenuTiles.tileMap.AddChild(obj);
         obj.RectPosition = this.RectPosition;
 
+
         this.inUse = false;
         this.GetParent().RemoveChild(this);
         this.upgradeMenu.grid.AddChild(this);
+
+        recordRef.Set(obj.GetTilePos(), obj);
     }
 
     //Place on grid
     public void PlaceOnGrid(){
+        recordRef.Set(this.GetTilePos(), null);
+
         inUse = false;
         GetParent().RemoveChild(this);
         upgradeMenu.grid.AddChild(this);
@@ -110,7 +133,9 @@ public class UpgradeMenuObj : Control {
         inUse = true;
         GetParent().RemoveChild(this);
         tile.AddChild(this);
-        RectPosition = tile.WorldToMap(position - tile.Position) * UpgradeMenu.IEM_SIZE;
+        SetPosThroughTile(tile.WorldToMap(position - tile.Position));
+
+        recordRef.Set(this.GetTilePos(), this);
     }
 
     public override void DropData(Vector2 position, object data) {

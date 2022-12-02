@@ -24,11 +24,10 @@ public class Matrix<T> : IEnumerable {
     }
 
     public Matrix(Rect2 rec){
-        Vector2 bottomRight = rec.End - Vector2.One;
         Vector2 upperLeft = rec.Position;
-        this.xLenght = (int)(bottomRight.x - upperLeft.x);
-        this.yLenght = (int)(bottomRight.y - upperLeft.y);
-        this.offset = upperLeft;
+        this.xLenght = (int)(rec.End.x - rec.Position.x);
+        this.yLenght = (int)(rec.End.y - rec.Position.y);
+        this.offset = rec.Position;
         Initialize();
     }
 
@@ -77,6 +76,16 @@ public class Matrix<T> : IEnumerable {
 
     public T GetRelative(Vector2 v, Vector2 relative){
         return GetRelative((int)v.x, (int)v.y, (int)relative.x, (int)relative.y);
+    }
+
+    public void SwitchPos(Vector2 v1, Vector2 v2){
+        SwitchPos((int)v1.x, (int)v1.y, (int)v2.x, (int)v1.y);
+    }
+
+    public void SwitchPos(int v1x, int v1y, int v2x, int v2y){
+        T temp = Get(v1x, v1y);
+        Set(v1x, v1y, Get(v2x, v2y));
+        Set(v2x, v2y, temp);
     }
 
     public IEnumerator GetEnumerator(){
