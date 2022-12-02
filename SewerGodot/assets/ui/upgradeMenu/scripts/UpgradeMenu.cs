@@ -13,7 +13,7 @@ public class UpgradeMenu : Control {
     public UpgradeMenuTiles upgradeMenuTiles;
     public GridContainer grid;
     
-    //Stat vars
+    //State vars
     Matrix<Upgrade> record;
 
 
