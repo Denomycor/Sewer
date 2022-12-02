@@ -12,12 +12,10 @@ public class UpgradeMenuObj : Control {
 
     //Stat vars
     public Upgrade upgradeRef;
-    public bool isStatic = false;
+    public readonly bool isStatic = false;
 
     //State vars
     public bool inUse = false;
-
-
 
     public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
