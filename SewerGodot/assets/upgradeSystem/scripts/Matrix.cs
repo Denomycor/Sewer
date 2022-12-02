@@ -17,8 +17,17 @@ public class Matrix<T> : IEnumerable {
     }
 
     public Matrix(Vector2 bottomRight, Vector2 upperLeft){
-        this.xLenght = (int)(upperLeft.x - bottomRight.x);
-        this.yLenght = (int)(upperLeft.y - bottomRight.y);
+        this.xLenght = (int)(bottomRight.x - upperLeft.x);
+        this.yLenght = (int)(bottomRight.y - upperLeft.y);
+        this.offset = upperLeft;
+        Initialize();
+    }
+
+    public Matrix(Rect2 rec){
+        Vector2 bottomRight = rec.End - Vector2.One;
+        Vector2 upperLeft = rec.Position;
+        this.xLenght = (int)(bottomRight.x - upperLeft.x);
+        this.yLenght = (int)(bottomRight.y - upperLeft.y);
         this.offset = upperLeft;
         Initialize();
     }
