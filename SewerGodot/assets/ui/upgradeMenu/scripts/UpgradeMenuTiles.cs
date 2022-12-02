@@ -27,11 +27,20 @@ public class UpgradeMenuTiles : Control{
             beingDragged = false;
         }
         if(e is InputEventMouseMotion && beingDragged){
-            //TODO: not being able to pan over the limit of tileMap
-            tileMap.Position += (e as InputEventMouseMotion).Relative;
+            Pan((e as InputEventMouseMotion).Relative);
         }
     }
 
+    public void Pan(Vector2 relative){
+        Rect2 tileArea = tileMap.GetUsedRect();
+        tileArea.Size *= UpgradeMenu.IEM_SIZE;
+
+        Vector2 final = new Vector2();
+        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, 1680-tileArea.End.x, 0-tileArea.Position.x);
+        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, 1080-tileArea.End.y, 0-tileArea.Position.y);
+
+        tileMap.Position = final;
+    }
 
 
     public override bool CanDropData(Vector2 position, object data) {
