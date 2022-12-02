@@ -7,7 +7,7 @@ public class UpgradeMenu : Control {
     
     //Constants
     //Size of tileMap
-    public static readonly int IEM_SIZE = 64;
+    public static readonly int IEM_SIZE = 80;
 
     //Node vars
     public UpgradeMenuTiles upgradeMenuTiles;
@@ -22,6 +22,7 @@ public class UpgradeMenu : Control {
         //FIXME: temp, init pre-existing UpgradeMenuObj, on the final products all instances of this scene are created dinamycally
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj2").Init(this);
+        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj3").Init(this);
     }
 
 }

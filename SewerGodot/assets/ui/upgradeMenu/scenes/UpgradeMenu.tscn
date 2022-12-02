@@ -19,29 +19,29 @@ script = ExtResource( 3 )
 [node name="RightPanel" type="MarginContainer" parent="Main"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -192.0
-margin_bottom = 1080.0
-rect_min_size = Vector2( 192, 0 )
+anchor_bottom = 1.0
+margin_left = -240.0
+rect_min_size = Vector2( 240, 0 )
 
 [node name="ScrollPanel" type="Panel" parent="Main/RightPanel"]
-margin_right = 192.0
+margin_right = 240.0
 margin_bottom = 1080.0
 
 [node name="Scroll" type="ScrollContainer" parent="Main/RightPanel/ScrollPanel"]
-margin_right = 192.0
+margin_right = 240.0
 margin_bottom = 1080.0
 scroll_horizontal_enabled = false
 script = ExtResource( 4 )
 
 [node name="List" type="VBoxContainer" parent="Main/RightPanel/ScrollPanel/Scroll"]
-margin_right = 128.0
-margin_bottom = 64.0
+margin_right = 240.0
+margin_bottom = 80.0
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="Grid" type="GridContainer" parent="Main/RightPanel/ScrollPanel/Scroll/List"]
-margin_right = 128.0
-margin_bottom = 64.0
+margin_right = 240.0
+margin_bottom = 80.0
 mouse_filter = 2
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
@@ -54,8 +54,16 @@ __meta__ = {
 
 [node name="UpgradeMenuObj2" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
 modulate = Color( 0.639216, 0.894118, 0.129412, 1 )
-margin_left = 64.0
-margin_right = 128.0
+margin_left = 80.0
+margin_right = 160.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="UpgradeMenuObj3" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
+modulate = Color( 0.894118, 0.164706, 0.129412, 1 )
+margin_left = 160.0
+margin_right = 240.0
 __meta__ = {
 "_edit_use_anchors_": true
 }
