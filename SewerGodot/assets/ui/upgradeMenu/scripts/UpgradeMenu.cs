@@ -7,7 +7,8 @@ public class UpgradeMenu : Control {
     
     //Constants
     //Size of tileMap
-    public static readonly int IEM_SIZE = 80;
+    public static readonly int TILE_SIZE = 80;
+    public static readonly Vector2[] DIRECTIONS = {Vector2.Up, Vector2.Right, Vector2.Down, Vector2.Left};
 
     //Node vars
     public UpgradeMenuTiles upgradeMenuTiles;

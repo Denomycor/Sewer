@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 /* Upgrade Object on the Upgrade Menu, handles a lot of stuff
  *
@@ -19,14 +20,28 @@ public class UpgradeMenuObj : Control {
     public Matrix<UpgradeMenuObj> recordRef;
     
 
+
+    /* FIXME: TEMP */
+    public UpgradeMenuObj(){
+        this.upgradeRef = new Upgrade();
+        upgradeRef.connectionsMap = new Dictionary<Vector2, int>(4);
+        upgradeRef.connectionsMap.Add(Vector2.Up, 1);
+        upgradeRef.connectionsMap.Add(Vector2.Right, -1);
+        upgradeRef.connectionsMap.Add(Vector2.Down, 1);
+        upgradeRef.connectionsMap.Add(Vector2.Left, -1);
+        /* TEMP */
+    }
+
     public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
         upgradeMenuTiles = upgradeMenu.upgradeMenuTiles;
         recordRef = upgradeMenu.record;
         upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
+
     }
 
 
+    //Godot functions
     public override void _GuiInput(InputEvent e){
         if(e is InputEventMouseButton){
             InputEventMouseButton emb = e as InputEventMouseButton;
@@ -40,42 +55,63 @@ public class UpgradeMenuObj : Control {
         }
     }
 
-    //Gets the cell position on the tileMap
-    public Vector2 GetTilePos(){
-        return RectPosition / UpgradeMenu.IEM_SIZE;
-    }
-
-
-    //Sets obj position given the desired cell coordinates
-    public void SetPosThroughTile(Vector2 pos){
-        RectPosition = pos * UpgradeMenu.IEM_SIZE;
-    }
-
-
     public override object GetDragData(Vector2 _){
         return this;
     }
 
 
+
+    //Gets the cell position on the tileMap
+    public Vector2 GetTilePos(){
+        return upgradeMenuTiles.tileMap.WorldToMap(RectPosition);
+    }
+
+
+    //Sets obj position given the desired cell coordinates
+    public void SetPosThroughTile(Vector2 pos){
+        RectPosition = upgradeMenuTiles.tileMap.MapToWorld(pos);
+    }
+
+
+
 /// Drag system - Checks on where it can be dropped
 
-    //Check if a given UpgradeMenuObj can be placed at the grid
+    //Can this go on grid
     public bool CanGoOnGrid(){
         return inUse && !isStatic;
     }
 
-    //Checks if an obj can be placed on tile
+    //Can this go on tile on this global pos
     public bool CanGoOnTile(Vector2 position){
-        return true;
+        Vector2 tileCoord = upgradeMenuTiles.tileMap.WorldToMap(position);
+        bool result = true;
+
+        foreach(Vector2 d in UpgradeMenu.DIRECTIONS){
+            UpgradeMenuObj other = upgradeMenu.record.GetRelative(tileCoord, d);
+            GD.Print(other);
+            if(other != null){
+                int o = other.upgradeRef.connectionsMap[d*-1];
+                int t = this.upgradeRef.connectionsMap[d];
+                result = result && (o == t) && (o!=-1);
+            }
+        }
+        return result;
     }
 
-    //Always can place on other obj place unless they are both on grid
+    //Can obj go on this
     public bool CanGoOnThis(UpgradeMenuObj obj){
-        if((this.isStatic && obj.inUse) || (this.inUse && obj.isStatic)){
-            return true;
-        }else{
-            return this.inUse || obj.inUse;
+
+        if(obj.inUse && this.inUse){
+            return obj.CanGoOnTile(this.RectPosition) && this.CanGoOnTile(obj.RectPosition);
+        }else if(obj.inUse && !this.inUse){
+            return obj.CanGoOnGrid() && this.CanGoOnTile(obj.RectPosition);
+        } else if(!obj.inUse && this.inUse){
+            return obj.CanGoOnTile(this.RectPosition) && this.CanGoOnGrid();
+        } else if(!obj.inUse && !this.inUse){
+            return obj.CanGoOnGrid() && this.CanGoOnGrid();
         }
+
+        return false;
     }
 
     public override bool CanDropData(Vector2 position, object data) {
@@ -128,7 +164,7 @@ public class UpgradeMenuObj : Control {
 
     //Place on TileMap
     public void PlaceOnTiles(Vector2 position){
-        TileMap tile = upgradeMenu.upgradeMenuTiles.tileMap;
+        TileMap tile = upgradeMenuTiles.tileMap;
         
         inUse = true;
         GetParent().RemoveChild(this);
