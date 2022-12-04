@@ -92,7 +92,7 @@ public class UpgradeMenuObj : Control {
             if(other != null){
                 int o = other.upgradeRef.connectionsMap[d*-1];
                 int t = this.upgradeRef.connectionsMap[d];
-                result = result && (o == t) && (o!=-1);
+                result = result && ((o == t) || (t == 99) || (o == 99)) && (o!=-1 && t!=-1);
             }
         }
         return result;
