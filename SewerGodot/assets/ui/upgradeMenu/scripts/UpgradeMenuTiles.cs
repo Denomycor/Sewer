@@ -65,5 +65,4 @@ public class UpgradeMenuTiles : Control{
             obj.PlaceOnTiles(position);
         }
     }
-
 }

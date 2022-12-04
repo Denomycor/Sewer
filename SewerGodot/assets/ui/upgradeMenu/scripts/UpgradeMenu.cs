@@ -1,4 +1,5 @@
 using Godot;
+using System.Text;
 
 /* Menu for configuring the upgrade system, Root of Upgrade Menu
  *
@@ -30,4 +31,21 @@ public class UpgradeMenu : Control {
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj3").Init(this);
     }
 
+
+///DEBUG
+
+    public static void DebugMatrix(Matrix<UpgradeMenuObj> record){
+        StringBuilder s = new StringBuilder();
+        for(int i=record.GetStartY(); i<record.GetEndY(); i++){
+            s.Append('\n');
+            for(int j=record.GetStartX(); j<record.GetEndX(); j++){
+                if(record[j, i] == null){
+                    s.Append(" 0");
+                }else{
+                    s.Append(" 1");
+                }
+            }
+        } s.Append("\n---------------------------------------------------------------");
+        GD.Print(s.ToString());
+    }
 }

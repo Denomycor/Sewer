@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Matrix<T> : IEnumerable {
 
-    public readonly int xLenght;
-    public readonly int yLenght;
-    public readonly Vector2 offset;
+    private readonly int xLenght;
+    private readonly int yLenght;
+    private readonly Vector2 offset;
 
     private T[,] buffer;
 
@@ -94,5 +94,29 @@ public class Matrix<T> : IEnumerable {
                 yield return buffer[y,x];
             }
         }
+    }
+
+    public Vector2 GetStart(){
+        return offset;
+    }
+
+    public int GetStartX(){
+        return (int)offset.x;
+    }
+    
+    public int GetStartY(){
+        return (int)offset.y;
+    }
+
+    public Vector2 GetEnd(){
+        return offset + new Vector2(xLenght, yLenght);
+    }
+
+    public int GetEndX(){
+        return (int)offset.x + xLenght;
+    }
+
+    public int GetEndY(){
+        return (int)offset.y + yLenght;
     }
 }

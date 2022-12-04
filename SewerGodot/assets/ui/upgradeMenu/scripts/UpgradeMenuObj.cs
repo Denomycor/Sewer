@@ -72,6 +72,20 @@ public class UpgradeMenuObj : Control {
         RectPosition = upgradeMenuTiles.tileMap.MapToWorld(pos);
     }
 
+    public List<Vector2> ApplicableDirections(Vector2 cellCoord){
+        List<Vector2> ll = new List<Vector2>(8);
+        Rect2 tile = upgradeMenuTiles.tileMap.GetUsedRect();
+        
+        if(cellCoord.y > tile.Position.y)
+            ll.Add(Vector2.Up);
+        if(cellCoord.y < tile.End.y)
+            ll.Add(Vector2.Down);
+        if(cellCoord.x > tile.Position.x)
+            ll.Add(Vector2.Left);
+        if(cellCoord.x < tile.End.x)
+            ll.Add(Vector2.Right);
+        return ll;
+    }
 
 
 /// Drag system - Checks on where it can be dropped
@@ -86,13 +100,14 @@ public class UpgradeMenuObj : Control {
         Vector2 tileCoord = upgradeMenuTiles.tileMap.WorldToMap(position);
         bool result = true;
 
-        foreach(Vector2 d in UpgradeMenu.DIRECTIONS){
+        foreach(Vector2 d in ApplicableDirections(tileCoord)){
             UpgradeMenuObj other = upgradeMenu.record.GetRelative(tileCoord, d);
-            GD.Print(other);
             if(other != null){
-                int o = other.upgradeRef.connectionsMap[d*-1];
-                int t = this.upgradeRef.connectionsMap[d];
-                result = result && ((o == t) || (t == 99) || (o == 99)) && (o!=-1 && t!=-1);
+                if(other.GetInstanceId() != this.GetInstanceId()){
+                    int o = other.upgradeRef.connectionsMap[d*-1];
+                    int t = this.upgradeRef.connectionsMap[d];
+                    result = result && ((o == t) || (t == 99) || (o == 99)) && (o!=-1 && t!=-1);
+                }
             }
         }
         return result;
@@ -135,7 +150,6 @@ public class UpgradeMenuObj : Control {
 
         recordRef.Set(obj.GetTilePos(), obj);
         recordRef.Set(this.GetTilePos(), this);
-
     }
 
     //Switch containers with obj
@@ -166,6 +180,10 @@ public class UpgradeMenuObj : Control {
     public void PlaceOnTiles(Vector2 position){
         TileMap tile = upgradeMenuTiles.tileMap;
         
+        if(this.inUse){
+            recordRef.Set(this.GetTilePos(), null);
+        }
+
         inUse = true;
         GetParent().RemoveChild(this);
         tile.AddChild(this);
