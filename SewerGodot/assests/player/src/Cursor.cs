@@ -1,22 +1,20 @@
 using Godot;
-using System;
+
 /* Script for setting player cursor to the intended position and height
  *
  */
-public class Cursor : Polygon2D
-{
+public class Cursor : Polygon2D {
+    
     //reference to player
-    private Node2D _parent;
+    private Player _parent;
 
     //initialize reference
-    public override void _Ready()
-    {
-        _parent = (Node2D)GetParent();
+    public override void _Ready(){
+        _parent = GetParent<Player>();
     }
 
     //sets cursor rotation to the angle pointing to the mouse
-    public override void _Process(float delta)
-    {
+    public override void _Process(float delta){
         Rotation = GetAngleFromMouse();
     }
 
@@ -32,7 +30,8 @@ public class Cursor : Polygon2D
             angle *= -1;
             ZIndex = -1;
         }else{
-            ZIndex = 1;        }
+            ZIndex = 1;        
+        }
 
         return angle;
     }

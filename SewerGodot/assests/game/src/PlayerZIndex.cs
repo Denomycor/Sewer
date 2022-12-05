@@ -1,10 +1,9 @@
 using Godot;
-using System;
+
 /* Checks is another entity has entered the players space to ajust his Z index according to the heights of the entety and player
  *
  */
-public class CheckForZIndex : Area2D
-{
+public class PlayerZIndex : Area2D {
 
     private bool _intersecting = false;
     Area2D _other;
@@ -15,12 +14,11 @@ public class CheckForZIndex : Area2D
         this.Connect("area_shape_exited", this, nameof(_on_Area_area_shape_exited));
     }
 
-    public override void _Process(float delta)
-    {
+    public override void _Process(float delta){
         if(_intersecting && _other!= null){
             CheckZIndex(_other);
         }else{
-            ((Node2D)this.Owner).ZIndex = 0;
+            GetParent<Player>().ZIndex = 0;
         }
     }
 
@@ -37,10 +35,10 @@ public class CheckForZIndex : Area2D
 
     //if collided adjust z index accordingly
     private void CheckZIndex(Area2D other){
-        if(((Node2D)other.Owner).Position.y > ((Node2D)this.Owner).Position.y){
-            ((Node2D)this.Owner).ZIndex = -2;
+        if(other.GetParent<Node2D>().Position.y > GetParent<Player>().Position.y){
+            GetParent<Player>().ZIndex = -2;
         }else{
-            ((Node2D)this.Owner).ZIndex = 2;
+            GetParent<Player>().ZIndex = 2;
         }
     }
 }

@@ -1,10 +1,10 @@
 using Godot;
 using System;
+
 /* Handles basic player AI and holds stats
  *
  */
-public class Enemy : Entity
-{
+public class Enemy : Entity {
     //refence to player
     private Node2D _player;
 
@@ -17,13 +17,11 @@ public class Enemy : Entity
 
 
     //find player reference
-    public override void _Ready()
-    {
+    public override void _Ready(){
         _player = (Node2D)GetParent().FindNode("Player");
     }
 
-    public override void _PhysicsProcess(float delta)
-    {
+    public override void _PhysicsProcess(float delta){
         //move towards player if enemy is out of range
         if(GetDistanceToPlayer()>=_range)
             Move(GetDirectionToPlayer());
@@ -35,7 +33,7 @@ public class Enemy : Entity
     }
 
     protected void Attack(Vector2 Direction){
-
+        throw new NotImplementedException();
     }
 
 
