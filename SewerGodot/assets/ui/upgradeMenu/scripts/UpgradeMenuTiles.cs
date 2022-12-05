@@ -40,8 +40,8 @@ public class UpgradeMenuTiles : Control{
         tileArea.Position *= UpgradeMenu.TILE_SIZE;
 
         Vector2 final = new Vector2();
-        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, 1680-tileArea.End.x, 0-tileArea.Position.x);
-        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, 1080-tileArea.End.y, 0-tileArea.Position.y);
+        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, 1682-tileArea.End.x, -2-tileArea.Position.x);
+        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, 1082-tileArea.End.y, -2-tileArea.Position.y);
 
         tileMap.Position = final;
     }

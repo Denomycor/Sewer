@@ -26,7 +26,7 @@ public class UpgradeMenuScroll : ScrollContainer {
         return false;
     }
 
-    public override void DropData(Vector2 position, object data) {
+    public override void DropData(Vector2 _, object data) {
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             //Is a UpgradeMenuObj

@@ -75,14 +75,14 @@ public class UpgradeMenuObj : Control {
     public List<Vector2> ApplicableDirections(Vector2 cellCoord){
         List<Vector2> ll = new List<Vector2>(8);
         Rect2 tile = upgradeMenuTiles.tileMap.GetUsedRect();
-        
+
         if(cellCoord.y > tile.Position.y)
             ll.Add(Vector2.Up);
-        if(cellCoord.y < tile.End.y)
+        if(cellCoord.y < tile.End.y-1)
             ll.Add(Vector2.Down);
         if(cellCoord.x > tile.Position.x)
             ll.Add(Vector2.Left);
-        if(cellCoord.x < tile.End.x)
+        if(cellCoord.x < tile.End.x-1)
             ll.Add(Vector2.Right);
         return ll;
     }
@@ -115,13 +115,12 @@ public class UpgradeMenuObj : Control {
 
     //Can obj go on this
     public bool CanGoOnThis(UpgradeMenuObj obj){
-
         if(obj.inUse && this.inUse){
-            return obj.CanGoOnTile(this.RectPosition) && this.CanGoOnTile(obj.RectPosition);
+            return obj.CanGoOnTile(this.RectGlobalPosition) && this.CanGoOnTile(obj.RectGlobalPosition);
         }else if(obj.inUse && !this.inUse){
-            return obj.CanGoOnGrid() && this.CanGoOnTile(obj.RectPosition);
+            return obj.CanGoOnGrid() && this.CanGoOnTile(obj.RectGlobalPosition);
         } else if(!obj.inUse && this.inUse){
-            return obj.CanGoOnTile(this.RectPosition) && this.CanGoOnGrid();
+            return obj.CanGoOnTile(this.RectGlobalPosition) && this.CanGoOnGrid();
         } else if(!obj.inUse && !this.inUse){
             return obj.CanGoOnGrid() && this.CanGoOnGrid();
         }
@@ -132,8 +131,10 @@ public class UpgradeMenuObj : Control {
     public override bool CanDropData(Vector2 position, object data) {
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
-            //Is a UpgradeMenuObj
-            return CanGoOnThis(obj);
+            if(obj.GetInstanceId() != this.GetInstanceId()){
+                //Is a UpgradeMenuObj
+                return CanGoOnThis(obj);
+            }
         }
 
         return false;
@@ -188,11 +189,10 @@ public class UpgradeMenuObj : Control {
         GetParent().RemoveChild(this);
         tile.AddChild(this);
         SetPosThroughTile(tile.WorldToMap(position - tile.Position));
-
         recordRef.Set(this.GetTilePos(), this);
     }
 
-    public override void DropData(Vector2 position, object data) {
+    public override void DropData(Vector2 _, object data) {
         UpgradeMenuObj obj = data as UpgradeMenuObj;
         if(obj != null){
             if(this.inUse && obj.inUse){
