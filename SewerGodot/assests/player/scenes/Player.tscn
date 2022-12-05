@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assests/game/src/PlayerZIndex.cs" type="Script" id=1]
+[ext_resource path="res://assests/player/src/PlayerZIndex.cs" type="Script" id=1]
 [ext_resource path="res://assests/player/src/Cursor.cs" type="Script" id=2]
 [ext_resource path="res://assests/player/src/Player.cs" type="Script" id=3]
 
