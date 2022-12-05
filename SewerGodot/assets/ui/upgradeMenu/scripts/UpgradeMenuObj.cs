@@ -97,7 +97,7 @@ public class UpgradeMenuObj : Control {
 
     //Can this go on tile on this global pos
     public bool CanGoOnTile(Vector2 position){
-        Vector2 tileCoord = upgradeMenuTiles.tileMap.WorldToMap(position);
+        Vector2 tileCoord = upgradeMenuTiles.tileMap.WorldToMap(position - upgradeMenuTiles.tileMap.Position);
         bool result = true;
 
         foreach(Vector2 d in ApplicableDirections(tileCoord)){
