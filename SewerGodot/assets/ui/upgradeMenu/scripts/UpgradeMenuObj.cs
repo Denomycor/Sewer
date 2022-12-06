@@ -16,6 +16,7 @@ public class UpgradeMenuObj : Control {
     public readonly bool isStatic = false;
 
     //State vars
+    public bool visited;
     public bool inUse = false;
     public Matrix<UpgradeMenuObj> recordRef;
     
@@ -72,19 +73,27 @@ public class UpgradeMenuObj : Control {
         RectPosition = upgradeMenuTiles.tileMap.MapToWorld(pos);
     }
 
-    public List<Vector2> ApplicableDirections(Vector2 cellCoord){
-        List<Vector2> ll = new List<Vector2>(8);
+
+    //Get directions where there can be a neighboor
+    public LinkedList<Vector2> ApplicableDirections(Vector2 cellCoord){
+        LinkedList<Vector2> ll = new LinkedList<Vector2>();
         Rect2 tile = upgradeMenuTiles.tileMap.GetUsedRect();
 
         if(cellCoord.y > tile.Position.y)
-            ll.Add(Vector2.Up);
+            ll.AddLast(Vector2.Up);
         if(cellCoord.y < tile.End.y-1)
-            ll.Add(Vector2.Down);
+            ll.AddLast(Vector2.Down);
         if(cellCoord.x > tile.Position.x)
-            ll.Add(Vector2.Left);
+            ll.AddLast(Vector2.Left);
         if(cellCoord.x < tile.End.x-1)
-            ll.Add(Vector2.Right);
+            ll.AddLast(Vector2.Right);
         return ll;
+    }
+
+
+    //Are 2 sides connected
+    public static bool AreConnected(int st, int nd){
+        return ((st == nd) || (nd == 99) || (st == 99)) && (st!=-1 && nd!=-1);
     }
 
 
@@ -106,7 +115,7 @@ public class UpgradeMenuObj : Control {
                 if(other.GetInstanceId() != this.GetInstanceId()){
                     int o = other.upgradeRef.connectionsMap[d*-1];
                     int t = this.upgradeRef.connectionsMap[d];
-                    result = result && ((o == t) || (t == 99) || (o == 99)) && (o!=-1 && t!=-1);
+                    result = result && AreConnected(o, t);
                 }
             }
         }
