@@ -8,9 +8,7 @@ using System.Collections.Generic;
 public class UpgradeMenu : Control {
     
     //Constants
-    //Size of tileMap
-    public static readonly int TILE_SIZE = 80;
-    public static readonly Vector2[] DIRECTIONS = {Vector2.Up, Vector2.Right, Vector2.Down, Vector2.Left};
+    public static Vector2 PAN_LIMITS = new Vector2(1682, 1082);
 
     //Node vars
     public UpgradeMenuTiles upgradeMenuTiles;
@@ -18,7 +16,7 @@ public class UpgradeMenu : Control {
     
     //State vars
     public Matrix<UpgradeMenuObj> record;
-    public LinkedList<UpgradeMenuObj> allUpgrades;
+    public LinkedList<UpgradeMenuObj> allUpgrades = new LinkedList<UpgradeMenuObj>();
 
 
     public override void _Ready(){
@@ -26,7 +24,6 @@ public class UpgradeMenu : Control {
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
         record = new Matrix<UpgradeMenuObj>(upgradeMenuTiles.tileMap.GetUsedRect());
-        allUpgrades = new LinkedList<UpgradeMenuObj>();
 
         //FIXME: temp, init pre-existing UpgradeMenuObj, on the final products all instances of this scene are created dinamycally
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
@@ -58,7 +55,7 @@ public class UpgradeMenu : Control {
             if(next != null){
                 int o = next.upgradeRef.connectionsMap[d*-1];
                 int t = obj.upgradeRef.connectionsMap[d];
-                if(UpgradeMenuObj.AreConnected(o,t) && o!=0){
+                if(UpgradeMenuObj.AreConnected(o,t)){
                     FoldImp(next, activeUpgrades);
                 }
             }
@@ -88,4 +85,5 @@ public class UpgradeMenu : Control {
         } s.Append("\n---------------------------------------------------------------");
         GD.Print(s.ToString());
     }
+
 }

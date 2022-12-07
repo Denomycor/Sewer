@@ -1,6 +1,9 @@
 using Godot;
 using System.Collections;
 
+/* 2D Array with an offset and inverted access order to correctly interface and represent objects in a grid-based coordinate system
+ *
+ */
 public class Matrix<T> : IEnumerable {
 
     private readonly int xLenght;
@@ -101,11 +104,11 @@ public class Matrix<T> : IEnumerable {
     }
 
     public int GetStartX(){
-        return (int)offset.x;
+        return (int)GetStart().x;
     }
     
     public int GetStartY(){
-        return (int)offset.y;
+        return (int)GetStart().y;
     }
 
     public Vector2 GetEnd(){
@@ -113,10 +116,11 @@ public class Matrix<T> : IEnumerable {
     }
 
     public int GetEndX(){
-        return (int)offset.x + xLenght;
+        return (int)GetEnd().x;
     }
 
     public int GetEndY(){
-        return (int)offset.y + yLenght;
+        return (int)GetEnd().y;
     }
+    
 }

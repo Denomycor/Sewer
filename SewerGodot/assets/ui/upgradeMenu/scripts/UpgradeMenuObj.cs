@@ -22,7 +22,7 @@ public class UpgradeMenuObj : Control {
     
 
 
-    /* FIXME: TEMP */
+    /* FIXME: TEMP Simulate having an Upgrade object*/
     public UpgradeMenuObj(){
         this.upgradeRef = new Upgrade();
         upgradeRef.connectionsMap = new Dictionary<Vector2, int>(4);
@@ -30,8 +30,8 @@ public class UpgradeMenuObj : Control {
         upgradeRef.connectionsMap.Add(Vector2.Right, -1);
         upgradeRef.connectionsMap.Add(Vector2.Down, 1);
         upgradeRef.connectionsMap.Add(Vector2.Left, -1);
-        /* TEMP */
     }
+    /* TEMP */
 
     public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
@@ -91,9 +91,14 @@ public class UpgradeMenuObj : Control {
     }
 
 
+    //Can 2 connections be next to each other
+    public static bool CanBeNeighbours(int st, int nd){
+        return ((st == nd) || (nd == 99) || (st == 99)) && (st!=-1 && nd!=-1);
+    }
+
     //Are 2 sides connected
     public static bool AreConnected(int st, int nd){
-        return ((st == nd) || (nd == 99) || (st == 99)) && (st!=-1 && nd!=-1);
+        return CanBeNeighbours(st, nd) && (st != 0);
     }
 
 
@@ -115,7 +120,7 @@ public class UpgradeMenuObj : Control {
                 if(other.GetInstanceId() != this.GetInstanceId()){
                     int o = other.upgradeRef.connectionsMap[d*-1];
                     int t = this.upgradeRef.connectionsMap[d];
-                    result = result && AreConnected(o, t);
+                    result = result && CanBeNeighbours(o, t);
                 }
             }
         }

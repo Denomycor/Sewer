@@ -36,12 +36,12 @@ public class UpgradeMenuTiles : Control{
     //Moves tileset
     public void Pan(Vector2 relative){
         Rect2 tileArea = tileMap.GetUsedRect();
-        tileArea.Size *= UpgradeMenu.TILE_SIZE;
-        tileArea.Position *= UpgradeMenu.TILE_SIZE;
+        tileArea.Size *= tileMap.CellSize;
+        tileArea.Position *= tileMap.CellSize;
 
         Vector2 final = new Vector2();
-        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, 1682-tileArea.End.x, -2-tileArea.Position.x);
-        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, 1082-tileArea.End.y, -2-tileArea.Position.y);
+        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, UpgradeMenu.PAN_LIMITS.x-tileArea.End.x, -2-tileArea.Position.x);
+        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, UpgradeMenu.PAN_LIMITS.y-tileArea.End.y, -2-tileArea.Position.y);
 
         tileMap.Position = final;
     }
