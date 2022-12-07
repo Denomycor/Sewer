@@ -58,7 +58,7 @@ public class UpgradeMenu : Control {
             if(next != null){
                 int o = next.upgradeRef.connectionsMap[d*-1];
                 int t = obj.upgradeRef.connectionsMap[d];
-                if(UpgradeMenuObj.AreConnected(o,t)){
+                if(UpgradeMenuObj.AreConnected(o,t) && o!=0){
                     FoldImp(next, activeUpgrades);
                 }
             }
