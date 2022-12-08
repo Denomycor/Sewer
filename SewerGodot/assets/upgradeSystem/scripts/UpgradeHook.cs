@@ -24,7 +24,7 @@ public abstract class UpgradeHook : Upgrade {
         AddAction();
     }
 
-    public void UnBind(){
+    public void Unbind(){
         isBinded = false;
         RemoveAction();
     }
