@@ -18,9 +18,12 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     public int valueInt {get; private set;}
 
     //State vars //TODO: figure how to initialize state vars
-    public Dictionary<Vector2, int> connectionsMap {get; private set;}
-    public UpgradeMenuObj upgradeMenuObj {get; private set;}
+    public Dictionary<Vector2, int> connectionsMap;
+    public UpgradeMenuObj upgradeMenuObj;
 
+
+    //FIXME: TEMP
+    public Upgrade(){}
     
     //Constructor
     public Upgrade(string name, string texture, Type type, Rarity rarity, int valueInt){
