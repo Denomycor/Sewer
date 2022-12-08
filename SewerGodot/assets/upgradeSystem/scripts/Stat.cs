@@ -5,12 +5,12 @@ using System.Collections.Generic;
  */
 public class Stat<T> {
 
-    //TODO: Identifier, to match StatUpgrades to correct stats
     //TODO: StateStat
 
     protected T value;
     protected T defaultValue;
     protected LinkedList<StatUpgrade<T>> upgradeList;
+    public StatKey key {get; private set;}
 
     //Delegates
     //Takes final value of fold and transforms it
@@ -19,9 +19,10 @@ public class Stat<T> {
 
 
     //Constructor
-    public Stat(T defaultValue, T value, TransformFunction Transform){
+    public Stat(T defaultValue, T value, TransformFunction Transform, StatKey key){
         this.defaultValue = defaultValue;
         this.value = value;
+        this.key = key;
 
         upgradeList = new LinkedList<StatUpgrade<T>>();
 
@@ -35,8 +36,10 @@ public class Stat<T> {
         Calculate();
     }
 
-
-    //TODO: way to remove or alter list
+    //Clear all upgrades
+    public void ClearUpgrades(){
+        upgradeList.Clear();
+    }
 
 
     //Calculates value of this stat
@@ -54,6 +57,14 @@ public class Stat<T> {
         return value;
     }
 
+
     public static implicit operator T(Stat<T> s) => s.Get();
+
+
+    //Enums
+    public enum StatKey {
+        PLAYERHP,
+        PLAYERMS,
+    }    
 
 }
