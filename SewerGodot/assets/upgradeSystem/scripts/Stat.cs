@@ -5,7 +5,7 @@ using System.Collections.Generic;
  */
 public class Stat<T> {
 
-    //TODO: StateStat
+    //TODO: Inacessibale members on Transform?, Should Transform be called after Set on StateStat?
 
     protected T value;
     protected T defaultValue;
@@ -13,8 +13,8 @@ public class Stat<T> {
     public StatKey key {get; private set;}
 
     //Delegates
-    //Takes final value of fold and transforms it
-    public delegate T TransformFunction(T a);
+    //Transform and do bound checking
+    public delegate void TransformFunction(Stat<T> s);
     protected TransformFunction Transform;
 
 
@@ -43,12 +43,12 @@ public class Stat<T> {
 
 
     //Calculates value of this stat
-    public virtual void Calculate(){
+    public void Calculate(){
         value = defaultValue;
         foreach(StatUpgrade<T> upgrade in upgradeList){
             value = upgrade.Fold(value);
         }
-        value = Transform(value);
+        Transform(this);
     }
 
 
