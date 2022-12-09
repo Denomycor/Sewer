@@ -7,7 +7,7 @@ public class Stat<T> {
 
     //TODO: Inacessibale members on Transform?, Should Transform be called after Set on StateStat?
 
-    protected T value;
+    public T value {get; private set;}
     protected T defaultValue;
     protected LinkedList<StatUpgrade<T>> upgradeList;
     public StatKey key {get; private set;}
@@ -46,7 +46,7 @@ public class Stat<T> {
     public void Calculate(){
         value = defaultValue;
         foreach(StatUpgrade<T> upgrade in upgradeList){
-            value = upgrade.Fold(value);
+            value = upgrade.Fold(value, defaultValue);
         }
         Transform(this);
     }

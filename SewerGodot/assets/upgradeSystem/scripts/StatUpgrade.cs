@@ -9,7 +9,7 @@ public abstract class StatUpgrade<T> : Upgrade {
 
     //Delegates
     //Takes stat accumulator and folds it with value
-    public delegate T FoldFunction(T acc);
+    public delegate T FoldFunction(T acc, T startingValue);
     public FoldFunction Fold {get; private set;}
 
 
