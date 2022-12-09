@@ -19,9 +19,9 @@ public class Stat<T> {
 
 
     //Constructor
-    public Stat(T defaultValue, T value, TransformFunction Transform, StatKey key){
+    public Stat(T defaultValue, TransformFunction Transform, StatKey key){
         this.defaultValue = defaultValue;
-        this.value = value;
+        this.value = defaultValue;
         this.key = key;
 
         upgradeList = new LinkedList<StatUpgrade<T>>();
@@ -43,7 +43,7 @@ public class Stat<T> {
 
 
     //Calculates value of this stat
-    public void Calculate(){
+    public virtual void Calculate(){
         value = defaultValue;
         foreach(StatUpgrade<T> upgrade in upgradeList){
             value = upgrade.Fold(value);
@@ -53,12 +53,9 @@ public class Stat<T> {
 
 
     //Gets value of this stat
-    public T Get(){
+    public virtual T Get(){
         return value;
     }
-
-
-    public static implicit operator T(Stat<T> s) => s.Get();
 
 
     //Enums
