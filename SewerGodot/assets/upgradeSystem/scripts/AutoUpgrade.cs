@@ -11,5 +11,6 @@ public abstract class AutoUpgrade : Upgrade {
     }
 
     //To be called every frame by player
-    public abstract void Process();
+    public abstract void Process(object player);
+
 }

@@ -5,7 +5,6 @@ public abstract class StatUpgrade<T> : Upgrade {
 
     //Stat vars
     public T value {get; private set;}
-    public Stat<T>.StatKey key {get; private set;}
 
     //Delegates
     //Takes stat accumulator and folds it with value
@@ -14,12 +13,14 @@ public abstract class StatUpgrade<T> : Upgrade {
 
 
     //Constructor
-    protected StatUpgrade(string name, string texture, Type type, Rarity rarity, int valueInt, T value, FoldFunction Fold, Stat<T>.StatKey key)
+    protected StatUpgrade(string name, string texture, Type type, Rarity rarity, int valueInt, T value, FoldFunction Fold)
         :base(name, texture, type, rarity, valueInt)
     {
         this.value = value;
         this.Fold = Fold;
-        this.key = key;
     }
+
+    //Goes to the correct Stat add adds itself
+    public abstract void BindToStat(object Player);
     
 }

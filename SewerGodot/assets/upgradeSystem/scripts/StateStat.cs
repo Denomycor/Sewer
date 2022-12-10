@@ -1,4 +1,3 @@
-
 /* Class that represents a Stat of an objects, accepts upgrades and automatically manages changes
  *
  */
@@ -11,7 +10,6 @@ public class StateStat<T> : Stat<T>{
         :base(defaultMaxValue, Transform, key)
     {
         this.current = startingValue;
-
     }
 
 

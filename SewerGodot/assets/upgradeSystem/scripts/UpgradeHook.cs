@@ -15,18 +15,18 @@ public abstract class UpgradeHook : Upgrade {
     }
 
     //Override to ad/remove subscription to event
-    protected abstract void AddAction();
-    protected abstract void RemoveAction();
+    protected abstract void AddAction(object player);
+    protected abstract void RemoveAction(object player);
 
 
-    public void Bind(){
+    public void Bind(object player){
         isBinded = true;
-        AddAction();
+        AddAction(player);
     }
 
-    public void Unbind(){
+    public void Unbind(object player){
         isBinded = false;
-        RemoveAction();
+        RemoveAction(player);
     }
 
 }

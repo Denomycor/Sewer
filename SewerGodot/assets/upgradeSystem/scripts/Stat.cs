@@ -10,7 +10,6 @@ public class Stat<T> {
     public T value {get; private set;}
     protected T defaultValue;
     protected LinkedList<StatUpgrade<T>> upgradeList;
-    public StatKey key {get; private set;}
 
     //Delegates
     //Transform and do bound checking
@@ -56,12 +55,5 @@ public class Stat<T> {
     public virtual T Get(){
         return value;
     }
-
-
-    //Enums
-    public enum StatKey {
-        PLAYERHP,
-        PLAYERMS,
-    }    
 
 }
