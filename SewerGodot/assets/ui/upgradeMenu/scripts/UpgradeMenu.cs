@@ -32,45 +32,27 @@ public class UpgradeMenu : Control {
     }
 
 
-    
-    //Returns a list with all active upgrades
-    public LinkedList<Upgrade> Fold(UpgradeMenuObj root){
-        foreach(UpgradeMenuObj o in allUpgrades){
-            o.visited = false;
-        }
-        LinkedList<Upgrade> activeUpgrades = new LinkedList<Upgrade>();
-        FoldImp(root, activeUpgrades);
-        return activeUpgrades;
-    }
-
-    private void FoldImp(UpgradeMenuObj obj, LinkedList<Upgrade> activeUpgrades){
-        if(obj.visited){
-            return;
-        }
-        obj.visited = true;
-        activeUpgrades.AddLast(obj.upgradeRef);
-
-        foreach(Vector2 d in obj.ApplicableDirections(obj.GetTilePos())){
-            UpgradeMenuObj next = record.GetRelative(obj.GetTilePos(), d);
-            if(next != null){
-                int o = next.upgradeRef.connectionsMap[d*-1];
-                int t = obj.upgradeRef.connectionsMap[d];
-                if(UpgradeMenuObj.AreConnected(o,t)){
-                    FoldImp(next, activeUpgrades);
-                }
-            }
-        }
+    public LinkedList<Upgrade> GetActiveUpgrades(){
+        //TODO: implement
+        return new LinkedList<Upgrade>();
     }
 
 
     //Adds a new UpgradeMenuObj from an Upgrade to the UpgradeMenu
     public void AddUpgrade(Upgrade upgrade){
-        //TODO: dont forget to add to allUpgrades
+        //TODO: also dont forget to add to allUpgrades
     }
 
+    public void MenuEnter(){
+        //TODO: implement later  
+    }
+    public void MenuLeave(){
+        //TODO: implement later  
+    }
 
 ///DEBUG
 
+    //TODO: DEBUG only
     public static void DebugMatrix(Matrix<UpgradeMenuObj> record){
         StringBuilder s = new StringBuilder();
         for(int i=record.GetStartY(); i<record.GetEndY(); i++){

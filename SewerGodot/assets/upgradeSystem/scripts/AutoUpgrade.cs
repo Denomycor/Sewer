@@ -10,7 +10,20 @@ public abstract class AutoUpgrade : Upgrade {
     {
     }
 
-    //To be called every frame by player
-    public abstract void Process(object player);
+    
+    //Override to create/remove Scene
+    protected abstract void CreateScene(object player);
+    protected abstract void DeleteScene(object player);
+
+
+    //Overriding this must call base.Initiate()
+    public override void Initiate(object player){
+        CreateScene(player);
+    }
+
+    //Overriding this must call base.Remove()
+    public override void Remove(object player){
+        DeleteScene(player);
+    }
 
 }

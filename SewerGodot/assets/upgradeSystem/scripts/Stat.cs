@@ -5,9 +5,7 @@ using System.Collections.Generic;
  */
 public class Stat<T> {
 
-    //TODO: Inacessibale members on Transform?, Should Transform be called after Set on StateStat?
-
-    public T value {get; private set;}
+    public T value {get;private set;}
     protected T defaultValue;
     protected LinkedList<StatUpgrade<T>> upgradeList;
 
@@ -18,10 +16,9 @@ public class Stat<T> {
 
 
     //Constructor
-    public Stat(T defaultValue, TransformFunction Transform, StatKey key){
+    public Stat(T defaultValue, TransformFunction Transform){
         this.defaultValue = defaultValue;
         this.value = defaultValue;
-        this.key = key;
 
         upgradeList = new LinkedList<StatUpgrade<T>>();
 
@@ -32,7 +29,6 @@ public class Stat<T> {
     //Adds upgrade to this stat
     public void AddUpgrade(StatUpgrade<T> upgrade){
         upgradeList.AddLast(upgrade);
-        Calculate();
     }
 
     //Clear all upgrades
@@ -45,7 +41,7 @@ public class Stat<T> {
     public void Calculate(){
         value = defaultValue;
         foreach(StatUpgrade<T> upgrade in upgradeList){
-            value = upgrade.Fold(value, defaultValue);
+            value = upgrade.Fold(this);
         }
         Transform(this);
     }
@@ -56,4 +52,9 @@ public class Stat<T> {
         return value;
     }
 
+
+    //Dangerous, sets value manually
+    public void OverrideValue(T value){
+        this.value = value;
+    }
 }

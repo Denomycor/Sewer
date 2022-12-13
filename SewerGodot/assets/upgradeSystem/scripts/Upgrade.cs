@@ -49,7 +49,20 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 
 ///Functions
 
+    //gets this upgrade description
     public virtual string GetDescription(){
+        //TODO: abstract
+        throw new NotImplementedException();
+    }
+
+    //Prepare upgrade, initialize scenes etc
+    public virtual void Initiate(object player){
+        //TODO: abstract
+        throw new NotImplementedException();
+    }
+
+    //Frees resources
+    public virtual void Remove(object player){
         //TODO: abstract
         throw new NotImplementedException();
     }

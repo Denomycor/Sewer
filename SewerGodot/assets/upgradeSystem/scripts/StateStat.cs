@@ -6,8 +6,8 @@ public class StateStat<T> : Stat<T>{
     public T current {get; set;}
 
     //Constructor
-    public StateStat(T defaultMaxValue, TransformFunction Transform, StatKey key, T startingValue)
-        :base(defaultMaxValue, Transform, key)
+    public StateStat(T defaultMaxValue, TransformFunction Transform, T startingValue)
+        :base(defaultMaxValue, Transform)
     {
         this.current = startingValue;
     }

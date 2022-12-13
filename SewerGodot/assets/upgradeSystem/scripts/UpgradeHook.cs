@@ -13,18 +13,21 @@ public abstract class UpgradeHook : Upgrade {
         :base(name, texture, type, rarity, valueInt)
     {
     }
+    
 
-    //Override to ad/remove subscription to event
+    //Override to add/remove subscription to event
     protected abstract void AddAction(object player);
     protected abstract void RemoveAction(object player);
 
 
-    public void Bind(object player){
+    //Overriding this must call base.Initiate()
+    public override void Initiate(object player){
         isBinded = true;
         AddAction(player);
     }
 
-    public void Unbind(object player){
+    //Overriding this must call base.Remove()
+    public override void Remove(object player){
         isBinded = false;
         RemoveAction(player);
     }
