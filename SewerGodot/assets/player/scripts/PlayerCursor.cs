@@ -1,10 +1,9 @@
-using System;
 using Godot;
 
 /* Script for setting player cursor to the intended position and height
  *
  */
-public class Cursor : Polygon2D {
+public class PlayerCursor : Polygon2D {
     
     //reference to player
     private Player _parent;
