@@ -12,15 +12,18 @@ public class UpgradeMenu : Control {
 
     //Node vars
     public UpgradeMenuTiles upgradeMenuTiles;
+    public UpgradeMenuContext upgradeMenuContext;
     public GridContainer grid;
     
     //State vars
+    public bool isPaused = false;
     public Matrix<UpgradeMenuObj> record;
     public LinkedList<UpgradeMenuObj> allUpgrades = new LinkedList<UpgradeMenuObj>();
 
 
     public override void _Ready(){
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
+        upgradeMenuContext = GetNode<UpgradeMenuContext>("UpgradeMenuContext");
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
         record = new Matrix<UpgradeMenuObj>(upgradeMenuTiles.tileMap.GetUsedRect());
@@ -29,12 +32,7 @@ public class UpgradeMenu : Control {
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj2").Init(this);
         GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj3").Init(this);
-    }
 
-
-    public LinkedList<Upgrade> GetActiveUpgrades(){
-        //TODO: implement
-        return new LinkedList<Upgrade>();
     }
 
 
@@ -43,16 +41,25 @@ public class UpgradeMenu : Control {
         //TODO: also dont forget to add to allUpgrades
     }
 
-    public void MenuEnter(){
-        //TODO: implement later  
+
+    //Toggles this menu on screen
+    public void MenuToggle(){
+        GetTree().Paused = isPaused;
+        GetParent<CanvasLayer>().Visible = isPaused;
+        upgradeMenuContext.SetProcessInput(isPaused);
+        isPaused = !isPaused;
     }
-    public void MenuLeave(){
-        //TODO: implement later  
-    }
+
 
 ///DEBUG
 
-    //TODO: DEBUG only
+    public override void _Input(InputEvent e){
+        if(e.IsActionPressed("ui_cancel")){
+            MenuToggle();
+        }
+    }
+
+    //FIXME: DEBUG only
     public static void DebugMatrix(Matrix<UpgradeMenuObj> record){
         StringBuilder s = new StringBuilder();
         for(int i=record.GetStartY(); i<record.GetEndY(); i++){

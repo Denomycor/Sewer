@@ -1,14 +1,17 @@
 using Godot;
+using System.Collections.Generic;
 
 /* handles the player movement
  *
  */
 public class Player : KinematicBody2D {
 
-    //Stat vars
+    //Player Stats
     public Stat<float> moveSpeed;
 
 
+
+    //State vars
     private Vector2 moveDirection;
 
 

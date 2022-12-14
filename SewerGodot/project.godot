@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="SewerGodot"
-run/main_scene="res://assets/ui/upgradeMenu/scenes/UpgradeMenu.tscn"
+run/main_scene="res://assets/game/scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [display]
