@@ -10,8 +10,8 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     //Stat vars
     public string name {get; private set;}
 
-    public string textureString {get; private set;}
-    public Texture texture {get; private set;}
+    public string spriteString {get; private set;}
+    public Texture sprite {get; private set;}
 
     public Type type {get; private set;}
     public Rarity rarity {get; private set;}
@@ -28,8 +28,8 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     //Constructor
     public Upgrade(string name, string texture, Type type, Rarity rarity, int valueInt){
         this.name = name;
-        this.textureString = texture;
-        this.texture = GD.Load<Texture>(texture);
+        this.spriteString = texture;
+        this.sprite = GD.Load<Texture>(texture);
         this.type = type;
         this.rarity = rarity;
         this.valueInt = valueInt;

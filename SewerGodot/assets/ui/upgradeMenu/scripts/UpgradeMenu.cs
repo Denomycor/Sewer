@@ -47,7 +47,24 @@ public class UpgradeMenu : Control {
         GetTree().Paused = isPaused;
         GetParent<CanvasLayer>().Visible = isPaused;
         upgradeMenuContext.SetProcessInput(isPaused);
-        isPaused = !isPaused;
+        if(isPaused){
+            MenuEnter();
+            isPaused = false;
+        }else{
+            MenuLeave();
+            isPaused = true;
+        }
+    }
+
+
+    //Called on entering the Menu
+    public void MenuEnter(){
+        //TODO: Recover state
+    }
+
+    //Called on leaving the Menu
+    public void MenuLeave(){
+        //TODO: Calculate New state of upgarde system and dispatch them
     }
 
 

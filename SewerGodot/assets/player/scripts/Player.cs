@@ -8,18 +8,23 @@ public class Player : KinematicBody2D {
 
     //Player Stats
     public Stat<float> moveSpeed;
+    public StateStat<int> health;
 
+    public Gun gun;
 
 
     //State vars
     private Vector2 moveDirection;
 
 
+
     //Constructor
     public Player(){
         moveSpeed = new Stat<float>(500f, (Stat<float> _) => {});
-    }
+        health = new StateStat<int>(100, (Stat<int> _) => {}, 100);
 
+        gun = new Gun(0f, 10f, 100f, 1000f, 1, 1, 1, this);
+    }
 
 
     //sets the movement direction
@@ -48,6 +53,12 @@ public class Player : KinematicBody2D {
             x -= 1;
         }
         return new Vector2(x,y).Normalized();
+    }
+
+    //Get cursor direction relativo to player
+    public Vector2 GetRelativeCursorDirection(){
+        Vector2 dif = GetLocalMousePosition() - Position;
+        return dif.Normalized();
     }
 
 }

@@ -25,6 +25,16 @@ public class Stat<T> {
         this.Transform = Transform;
     }
 
+    //Constructor shared
+    public Stat(T defaultValue, TransformFunction Transform, LinkedList<StatUpgrade<T>> upgrades){
+        this.defaultValue = defaultValue;
+        this.value = defaultValue;
+
+        upgradeList = upgrades;
+
+        this.Transform = Transform;
+    }
+
 
     //Adds upgrade to this stat
     public void AddUpgrade(StatUpgrade<T> upgrade){
