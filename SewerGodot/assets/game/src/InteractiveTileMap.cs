@@ -13,7 +13,10 @@ public class InteractiveTileMap : TileMap
     private Node2D room;
     [Export] 
     private Dictionary<int, PackedScene> TileIDToScene = new Dictionary<int, PackedScene>(){
-        {2 , ResourceLoader.Load<PackedScene>("res://assets/game/scenes/Entrance.tscn")}
+        {2 , ResourceLoader.Load<PackedScene>("res://assets/game/scenes/TopGate.tscn")},
+        {3 , ResourceLoader.Load<PackedScene>("res://assets/game/scenes/RightGate.tscn")},
+        {4 , ResourceLoader.Load<PackedScene>("res://assets/game/scenes/LeftGate.tscn")},
+        {5 , ResourceLoader.Load<PackedScene>("res://assets/game/scenes/BottomGate.tscn")}
     };
 
     public override async void _Ready()
