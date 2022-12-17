@@ -16,10 +16,12 @@ public class UpgradeMenuObj : Control {
     public readonly bool isStatic = false;
 
     //State vars
-    public bool visited;
     public bool inUse = false;
     public Matrix<UpgradeMenuObj> recordRef;
     
+    //Fold state vars
+    public bool visited = false;
+    public bool initialized = false;
 
 
     /* FIXME: TEMP Simulate having an Upgrade object*/
@@ -150,7 +152,6 @@ public class UpgradeMenuObj : Control {
                 return CanGoOnThis(obj);
             }
         }
-
         return false;
     }
 
