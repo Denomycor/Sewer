@@ -67,4 +67,5 @@ public class Stat<T> {
     public void OverrideValue(T value){
         this.value = value;
     }
+    
 }

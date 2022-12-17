@@ -23,7 +23,7 @@ public class Player : KinematicBody2D {
         moveSpeed = new Stat<float>(500f, (Stat<float> _) => {});
         health = new StateStat<int>(100, (Stat<int> _) => {}, 100);
 
-        gun = new Gun(0f, 10f, 100f, 1000f, 1, 1, 1, this);
+        gun = new Gun(1f, 1, this, null);
     }
 
 

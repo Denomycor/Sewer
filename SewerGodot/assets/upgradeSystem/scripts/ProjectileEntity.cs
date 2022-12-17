@@ -11,7 +11,7 @@ public abstract class ProjectileEntity : KinematicBody2D {
     public float range = 600f;
     public float size = 1;
     public Vector2 direction = Vector2.Up;
-    public PathFunction Path = LinearMovement;
+    public PathFunction Path = LinearPath;
     
     //delegates
     public delegate Vector2 PathFunction(Vector2 direction, float delta);
@@ -41,11 +41,13 @@ public abstract class ProjectileEntity : KinematicBody2D {
         currentRange = 0;
     }
 
+
     //Fire this projectile
     public virtual void Shoot(){
         parent.gun.OnShoot(this);
         SetProcess(true);
     }
+
 
     //Process
     public override void _PhysicsProcess(float delta){
@@ -58,6 +60,7 @@ public abstract class ProjectileEntity : KinematicBody2D {
         }
     }
 
+
     //Remove this projectile and add to object pool
     public virtual void Fade(){
         parent.gun.OnFade(this);
@@ -66,24 +69,31 @@ public abstract class ProjectileEntity : KinematicBody2D {
         parent.SaveProjectile(this);
     }
 
+
     //Destroys this projectile
     public virtual void Destroy(){
         QueueFree();
     }
 
+
     //Moves the projectile
     public virtual void Move(float delta){
         Vector2 path = Path(direction, delta);
+        this.Rotation = path.Angle();
         KinematicCollision2D collision = MoveAndCollide(path*speed*delta);
         OnCollision(collision);
     }
 
+
+    //Collide with entity
     public virtual void OnCollision(KinematicCollision2D collision){
         parent.gun.OnEntityCollision(this, collision);
     }
 
+
     //Standard linear movement
-    public static Vector2 LinearMovement(Vector2 direction, float delta){
+    public static Vector2 LinearPath(Vector2 direction, float delta){
         return direction;
     }
+    
 }

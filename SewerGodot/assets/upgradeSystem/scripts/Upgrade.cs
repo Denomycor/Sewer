@@ -15,7 +15,7 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 
     public Type type {get; private set;}
     public Rarity rarity {get; private set;}
-    public int valueInt {get; private set;}
+    protected int valueInt {get; private set;}
 
     //State vars //TODO: figure how to initialize state vars
     public Dictionary<Vector2, int> connectionsMap;
@@ -26,20 +26,20 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     public Upgrade(){}
     
     //Constructor
-    public Upgrade(string name, string texture, Type type, Rarity rarity, int valueInt){
+    public Upgrade(string name, string texture, Type type, Rarity rarity, int defaultValueInt){
         this.name = name;
         this.spriteString = texture;
         this.sprite = GD.Load<Texture>(texture);
         this.type = type;
         this.rarity = rarity;
-        this.valueInt = valueInt;
+        this.valueInt = defaultValueInt;
     }
 
 
 ///Enums
 
     public enum Type {
-        PLAYERSTAT,
+        PLAYERSTAT, PROJECTILE,
     }
 
     public enum Rarity {
@@ -63,6 +63,12 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 
     //Frees resources
     public virtual void Remove(object player){
+        //TODO: abstract
+        throw new NotImplementedException();
+    }
+
+    //Gets an integer representing how good an upgrade is
+    public virtual int GetValue(object player){
         //TODO: abstract
         throw new NotImplementedException();
     }
