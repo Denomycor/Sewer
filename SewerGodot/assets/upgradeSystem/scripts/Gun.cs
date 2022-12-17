@@ -17,7 +17,7 @@ public class Gun{
     public LinkedList<ProjectileEntity.PathFunction> PathUpgrades;
     
     //Gun stats
-    public Stat<float> firerate;
+    public Stat<float> fireDelay;
     public Stat<int> gunMultishot;
 
     //Player who holds this gun
@@ -32,6 +32,9 @@ public class Gun{
     public Action<ProjectileEntity, KinematicCollision2D> OnEntityCollision;
     public Action<ProjectileEntity> OnProcess;
     public Action<ProjectileEntity> OnFade;
+    
+    //Timers
+    public bool readyToShoot = true;
 
     //Random
     private Random rd = new Random();
@@ -46,20 +49,25 @@ public class Gun{
         this.sizeUpgrades = new LinkedList<float>();
         this.PathUpgrades = new LinkedList<ProjectileEntity.PathFunction>();
 
-        this.firerate = new Stat<float>(firerate, (Stat<float> x)=>{});
+        this.fireDelay = new Stat<float>(firerate, (Stat<float> x)=>{});
         this.gunMultishot = new Stat<int>(gunMultishot, (Stat<int> x)=>{});
         
         this.player = player;
         this.projectiles = new List<Projectile>();
         this.defaultProjectile = defaultProjectile;
+        
     }
 
 
     //Fire a shot
     public void Shoot(){
-        for(int i=0; i<gunMultishot.value; i++){
-            Projectile proj = SelectProjectile();
-            proj.Shoot();
+        if(readyToShoot){            
+            for(int i=0; i<gunMultishot.value; i++){
+                Projectile proj = SelectProjectile();
+                proj.Shoot();
+            }
+            readyToShoot = false;
+            player.fireDelayTimer.Start();
         }
     }
 
@@ -84,6 +92,11 @@ public class Gun{
         return projectiles[i];
     }
 
+
+    public void CalculateFirerate(){
+        fireDelay.Calculate();
+        player.fireDelayTimer.WaitTime = fireDelay.value;
+    }
 
 ///Calculates
 

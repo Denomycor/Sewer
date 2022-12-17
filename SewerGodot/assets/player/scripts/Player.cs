@@ -1,5 +1,4 @@
 using Godot;
-using System.Collections.Generic;
 
 /* handles the player movement
  *
@@ -11,12 +10,15 @@ public class Player : KinematicBody2D {
     public StateStat<int> health;
 
     public Gun gun;
-
+    public Timer fireDelayTimer; 
 
     //State vars
     private Vector2 moveDirection;
 
 
+    public override void _Ready(){
+        fireDelayTimer = GetNode<Timer>("FireDelayTimer");
+    }
 
     //Constructor
     public Player(){
@@ -59,6 +61,11 @@ public class Player : KinematicBody2D {
     public Vector2 GetRelativeCursorDirection(){
         Vector2 dif = GetLocalMousePosition() - Position;
         return dif.Normalized();
+    }
+
+    //SINGAL CALLBACK
+    public void OnFireDelayTimerTimeout(){
+        gun.readyToShoot = true;
     }
 
 }
