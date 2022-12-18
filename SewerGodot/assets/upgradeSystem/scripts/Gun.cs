@@ -93,7 +93,7 @@ public class Gun{
     }
 
 
-    public void CalculateFirerate(){
+    public void CalculateFireDelay(){
         fireDelay.Calculate();
         player.fireDelayTimer.WaitTime = fireDelay.value;
     }
@@ -149,4 +149,15 @@ public class Gun{
         defaultProjectile.Path.Calculate();
     }
 
+    public void CalculateAllStats(){
+        CalculateFireDelay();
+        CalculateSpread();
+        CalculateDamage();
+        CalculateSpeed();
+        CalculateRange();
+        CalculateMultishot();
+        CalculateSize();
+        CalculatePath();
+        gunMultishot.Calculate();
+    }
 }

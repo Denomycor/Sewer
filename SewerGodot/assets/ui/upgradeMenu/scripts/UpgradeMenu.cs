@@ -66,7 +66,9 @@ public class UpgradeMenu : Control {
 
     //Called on leaving the Menu
     public void MenuLeave(){
-        //TODO: Calculate New state of upgarde system and dispatch them
+        //TODO: not null
+        player.activeUpgrades = CalculateActiveUpgradesAndInstall(null);
+        CalculateAllStats();
     }
 
 
@@ -122,6 +124,12 @@ public class UpgradeMenu : Control {
                 }
             }
         }
+    }
+
+    //Calculate all stats
+    public void CalculateAllStats(){
+        player.CalculateAllStats();
+        player.gun.CalculateAllStats();
     }
 
 

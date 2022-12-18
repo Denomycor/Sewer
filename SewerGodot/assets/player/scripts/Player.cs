@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 /* handles the player movement
  *
@@ -14,6 +15,9 @@ public class Player : KinematicBody2D {
 
     //State vars
     private Vector2 moveDirection;
+
+    //Active upgrades
+    public LinkedList<Upgrade> activeUpgrades;
 
 
     public override void _Ready(){
@@ -68,4 +72,8 @@ public class Player : KinematicBody2D {
         gun.readyToShoot = true;
     }
 
+    public void CalculateAllStats(){
+        moveSpeed.Calculate();
+        health.Calculate();
+    }
 }
