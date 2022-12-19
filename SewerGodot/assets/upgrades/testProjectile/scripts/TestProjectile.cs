@@ -29,6 +29,7 @@ public class TestProjectile : Projectile {
             Stat<ProjectileEntity.PathFunction>.NullFunc,
             gun.PathUpgrades
         );
+        this.poolCapacity = 5;
     }
 
 }
