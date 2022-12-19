@@ -9,12 +9,14 @@ public class UpgradeMenuScroll : ScrollContainer {
     public GridContainer grid;
 
 
+///Initializations
 
     public override void _Ready() {
         grid = GetNode<GridContainer>("List/Grid");
     }
 
 
+///Logic
 
     public override bool CanDropData(Vector2 position, object data){
         UpgradeMenuObj obj = data as UpgradeMenuObj;

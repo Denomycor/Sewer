@@ -22,6 +22,8 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     public UpgradeMenuObj upgradeMenuObj;
 
 
+///Initializations
+
     //FIXME: TEMP
     public Upgrade(){}
     
@@ -39,15 +41,15 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 ///Enums
 
     public enum Type {
-        PLAYERSTAT, PROJECTILE,
+        PLAYERSTAT, PROJECTILE, TEST,
     }
 
     public enum Rarity {
-        COMMON,
+        COMMON, TEST,
     }
 
 
-///Functions
+///Abstracts
 
     //gets this upgrade description
     public virtual string GetDescription(){
@@ -56,19 +58,19 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     }
 
     //Prepare upgrade, initialize scenes etc
-    public virtual void Initiate(object player){
+    public virtual void Install(Player player){
         //TODO: abstract
         throw new NotImplementedException();
     }
 
     //Frees resources
-    public virtual void Remove(object player){
+    public virtual void Remove(Player player){
         //TODO: abstract
         throw new NotImplementedException();
     }
 
     //Gets an integer representing how good an upgrade is
-    public virtual int GetValue(object player){
+    public virtual int GetValue(Player player){
         //TODO: abstract
         throw new NotImplementedException();
     }

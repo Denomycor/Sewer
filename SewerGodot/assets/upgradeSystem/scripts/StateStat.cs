@@ -5,6 +5,9 @@ public class StateStat<T> : Stat<T>{
 
     public T current {get; set;}
 
+
+///Initializations
+
     //Constructor
     public StateStat(T defaultMaxValue, TransformFunction Transform, T startingValue)
         :base(defaultMaxValue, Transform)
@@ -12,6 +15,8 @@ public class StateStat<T> : Stat<T>{
         this.current = startingValue;
     }
 
+
+///Logic
 
     //Gets current value of this stat
     public override T Get(){

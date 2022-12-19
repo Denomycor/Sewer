@@ -10,6 +10,8 @@ public class Game : Node {
     public Player player;
 
 
+///Initializations
+
     public override void _Ready() {
         //Toggle off upgradeMenu on start
         upgradeMenu = GetNode<UpgradeMenu>("UpgradeMenu/Main");

@@ -10,10 +10,11 @@ public class Stat<T> {
     protected LinkedList<StatUpgrade<T>> upgradeList;
 
     //Delegates
-    //Transform and do bound checking
     public delegate void TransformFunction(Stat<T> s);
     protected TransformFunction Transform;
 
+
+///Initializations
 
     //Constructor
     public Stat(T defaultValue, TransformFunction Transform){
@@ -35,6 +36,8 @@ public class Stat<T> {
         this.Transform = Transform;
     }
 
+
+///Logic
 
     //Adds upgrade to this stat
     public void AddUpgrade(StatUpgrade<T> upgrade){
@@ -68,4 +71,10 @@ public class Stat<T> {
         this.value = value;
     }
     
+
+///Statics
+
+    //Null function
+    public static void NullFunc(Stat<T> s){}
+
 }

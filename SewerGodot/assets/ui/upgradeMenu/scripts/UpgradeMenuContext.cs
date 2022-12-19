@@ -9,13 +9,13 @@ public class UpgradeMenuContext : Control {
     UpgradeMenuObj upgradeObj;
 
 
+///Logic
 
     //Reloads this into the screen
     public void Reload(UpgradeMenuObj obj){
         RectPosition = GetDisplayPosition(obj);
         this.Visible = true;
     }
-
 
 
     //Decide where to place the UpgradeMenuContext
@@ -40,12 +40,10 @@ public class UpgradeMenuContext : Control {
     }
 
 
-
     //Disappear from screen
     public void HideWindow(){
         this.Visible = false;
     }
-
 
 
     public override void _Input(InputEvent e) {

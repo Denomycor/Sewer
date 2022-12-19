@@ -23,6 +23,9 @@ public class UpgradeMenu : Control {
     //player
     public Player player;
 
+
+///Initializations
+
     public override void _Ready(){
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
         upgradeMenuContext = GetNode<UpgradeMenuContext>("UpgradeMenuContext");
@@ -38,9 +41,12 @@ public class UpgradeMenu : Control {
     }
 
 
+///Logic
+
     //Adds a new UpgradeMenuObj from an Upgrade to the UpgradeMenu
     public void AddUpgrade(Upgrade upgrade){
         //TODO: also dont forget to add to allUpgrades
+        //Create UpradeMenuObj for this
     }
 
 
@@ -61,16 +67,15 @@ public class UpgradeMenu : Control {
 
     //Called on entering the Menu
     public void MenuEnter(){
-        //TODO: Recover state
+        //TODO: Called on entering the menu
     }
 
     //Called on leaving the Menu
     public void MenuLeave(){
-        //TODO: not null
-        player.activeUpgrades = CalculateActiveUpgradesAndInstall(null);
-        CalculateAllStats();
+        //TODO: Root upgrdeObj -----------------------------------vvvv
+        //player.activeUpgrades = CalculateActiveUpgradesAndInstall(null);
+        //CalculateAllStats();
     }
-
 
 
     //Check tileState and set active upgrades accordingly
@@ -100,15 +105,16 @@ public class UpgradeMenu : Control {
         return activeUpgrades;
     }
 
+    //Handles CalculateActiveUpgradesAndInstall for a single upgrade
     public void HandleUpgrade(Queue<UpgradeMenuObj> queue, LinkedList<Upgrade> activeUpgrades){
-        //Get upgrade and initiate
+        //Get upgrade and Install
         UpgradeMenuObj current = queue.Dequeue();
         activeUpgrades.AddLast(current.upgradeRef);
         current.visited = true;
 
         if(!current.initialized){
             current.initialized = true;
-            current.upgradeRef.Initiate(player);
+            current.upgradeRef.Install(player);
         }
         
         //check neighboors

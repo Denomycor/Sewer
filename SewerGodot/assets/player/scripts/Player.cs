@@ -10,6 +10,7 @@ public class Player : KinematicBody2D {
     public Stat<float> moveSpeed;
     public StateStat<int> health;
 
+    //Shooting
     public Gun gun;
     public Timer fireDelayTimer; 
 
@@ -20,6 +21,8 @@ public class Player : KinematicBody2D {
     public LinkedList<Upgrade> activeUpgrades;
 
 
+///Initialization
+
     public override void _Ready(){
         fireDelayTimer = GetNode<Timer>("FireDelayTimer");
     }
@@ -29,9 +32,15 @@ public class Player : KinematicBody2D {
         moveSpeed = new Stat<float>(500f, (Stat<float> _) => {});
         health = new StateStat<int>(100, (Stat<int> _) => {}, 100);
 
-        gun = new Gun(1f, 1, this, null);
+
+        gun = new Gun(1f, 1, this);
+        //FIXME: Remove this projectile, for test purposes only
+        TestProjectile p = new TestProjectile(gun);
+        p.Install(this);
     }
 
+
+///Logic
 
     //sets the movement direction
     public override void _Process(float delta){
@@ -42,6 +51,7 @@ public class Player : KinematicBody2D {
     public override void _PhysicsProcess(float delta){
         MoveAndSlide(moveDirection * moveSpeed.value, Vector2.Up);
     }
+    
     
     //returns movement direction
     private Vector2 GetMovementDirtection(){
@@ -61,19 +71,30 @@ public class Player : KinematicBody2D {
         return new Vector2(x,y).Normalized();
     }
 
+
     //Get cursor direction relativo to player
     public Vector2 GetRelativeCursorDirection(){
-        Vector2 dif = GetLocalMousePosition() - Position;
+        Vector2 dif = GetGlobalMousePosition() - GlobalPosition;
         return dif.Normalized();
     }
+
 
     //SINGAL CALLBACK
     public void OnFireDelayTimerTimeout(){
         gun.readyToShoot = true;
     }
 
+
+    //Calculate all stats of player
     public void CalculateAllStats(){
         moveSpeed.Calculate();
         health.Calculate();
+    }
+
+
+    public override void _Input(InputEvent e){
+        if(e.IsActionPressed("ui_select")){
+            gun.Shoot();
+        }
     }
 }

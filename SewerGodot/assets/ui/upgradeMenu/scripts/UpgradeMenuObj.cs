@@ -24,6 +24,8 @@ public class UpgradeMenuObj : Control {
     public bool initialized = false;
 
 
+///Initializations
+
     /* FIXME: TEMP Simulate having an Upgrade object*/
     public UpgradeMenuObj(){
         this.upgradeRef = new Upgrade();
@@ -43,6 +45,8 @@ public class UpgradeMenuObj : Control {
 
     }
 
+
+///Logic
 
     //Godot functions
     public override void _GuiInput(InputEvent e){
@@ -104,7 +108,7 @@ public class UpgradeMenuObj : Control {
     }
 
 
-/// Drag system - Checks on where it can be dropped
+///Drag system - Checks on where it can be dropped
 
     //Can this go on grid
     public bool CanGoOnGrid(){
@@ -156,7 +160,7 @@ public class UpgradeMenuObj : Control {
     }
 
 
-/// Drag system - Places objs in new positions
+///Drag system - Places objs in new positions
 
     //Switch places with objs
     public void SwitchPos(UpgradeMenuObj obj){

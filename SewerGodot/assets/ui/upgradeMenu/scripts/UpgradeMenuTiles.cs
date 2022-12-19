@@ -12,12 +12,14 @@ public class UpgradeMenuTiles : Control{
     public bool beingDragged = false;
 
 
+///Initializations
 
     public override void _Ready() {
         tileMap = GetNode<TileMap>("TileMap");
     }
 
 
+///Logic
 
     public override void _GuiInput(InputEvent e){
         if(e.IsActionPressed("pan")){
@@ -32,7 +34,6 @@ public class UpgradeMenuTiles : Control{
     }
 
 
-
     //Moves tileset
     public void Pan(Vector2 relative){
         Rect2 tileArea = tileMap.GetUsedRect();
@@ -45,7 +46,6 @@ public class UpgradeMenuTiles : Control{
 
         tileMap.Position = final;
     }
-
 
 
     public override bool CanDropData(Vector2 position, object data) {

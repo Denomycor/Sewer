@@ -7,7 +7,7 @@ using System;
  */
 public abstract class Projectile : AutoUpgrade {
 
-    //ProjectileEntity
+    //ProjectileEntity template
     public PackedScene projectileTemplate;
 
     //Projectile stats
@@ -29,15 +29,42 @@ public abstract class Projectile : AutoUpgrade {
     //Random
     private Random rd = new Random();
 
+
+///Initializations
+
     //Constructor
     protected Projectile(string name, string texture, Type type, Rarity rarity, int valueInt, Gun gun)
         :base(name, texture, type, rarity, valueInt)
     {
         this.gun = gun;
         this.objectPool = new Queue<ProjectileEntity>();
-        InitStats();
+        InitStatsAndPool();
     }
 
+    //Install upgrade
+    public override void Install(Player player){
+        base.Install(player);
+        AssignToGun(player);
+    }
+
+    //Remove upgrade
+    public override void Remove(Player player){
+        base.Remove(player);
+        RemoveFromGun(player);
+    }
+
+    //Assign this projectile to gun
+    protected virtual void AssignToGun(Player player){
+        player.gun.AddProjectile(this);
+    }
+
+    //Remove this projectile from gun
+    protected virtual void RemoveFromGun(Player player){
+        player.gun.RemoveProjectile(this);
+    }
+
+
+///Logic
 
     //Fire this projectile
     public virtual void Shoot(){
@@ -56,6 +83,7 @@ public abstract class Projectile : AutoUpgrade {
             return proj;
         }else{
             ProjectileEntity proj = projectileTemplate.Instance<ProjectileEntity>();
+            gun.player.GetParent().GetParent().AddChild(proj);
             proj.Init(GetStartPos(), GetDirectionWithSpread(), GetDamage(), GetSpeed(), GetRange(), GetSize(), GetPath(), this);
             return proj;
         }
@@ -79,6 +107,14 @@ public abstract class Projectile : AutoUpgrade {
     }
 
 
+    //Destroy all objects in the pool
+    public virtual void ClearPool(){
+        foreach (ProjectileEntity p in objectPool){
+            p.Destroy();
+        }
+    }
+
+
 ///Getters for stats
 
     //Override to calculate final value of spread (this stats + gun default)
@@ -93,7 +129,7 @@ public abstract class Projectile : AutoUpgrade {
 
     //Override to calculate final value of postion (this stats + gun default)
     protected virtual Vector2 GetStartPos(){
-        return gun.player.Position;
+        return gun.player.GlobalPosition;
     }
 
     //Override to calculate final value of PathFunction (this stats + gun default)
@@ -129,7 +165,7 @@ public abstract class Projectile : AutoUpgrade {
 
 ///Abstracts
     
-    //Init stats with upgrade lists from parent gun and init poolCapacity vard
-    protected abstract void InitStats();
+    //Init stats with upgrade lists from parent gun and init poolCapacity var
+    protected abstract void InitStatsAndPool();
 
 }
