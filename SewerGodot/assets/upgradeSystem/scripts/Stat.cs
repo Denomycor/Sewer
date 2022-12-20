@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Stat<T> {
 
     public T value {get;private set;}
-    protected T defaultValue;
+    public T defaultValue {get;private set;}
     protected LinkedList<StatUpgrade<T>> upgradeList;
 
     //Delegates

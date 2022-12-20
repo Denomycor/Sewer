@@ -33,10 +33,14 @@ public class Player : KinematicBody2D {
         p.Install(this);
         TestMultishot m = new TestMultishot();
         m.Install(this);
+        TestSpread sp = new TestSpread();
+        sp.Install(this);
+        /*TestMultishot m2 = new TestMultishot();
+        m2.Install(this);
         TestSpeed s = new TestSpeed();
         s.Install(this);
         TestOnShoot os = new TestOnShoot();
-        os.Install(this);
+        os.Install(this);*/
         gun.CalculateAllStats();
     }
 
