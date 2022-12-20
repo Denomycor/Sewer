@@ -31,6 +31,13 @@ public class Player : KinematicBody2D {
         //FIXME: Remove this projectile, for test purposes only
         TestProjectile p = new TestProjectile(gun);
         p.Install(this);
+        TestMultishot m = new TestMultishot();
+        m.Install(this);
+        TestSpeed s = new TestSpeed();
+        s.Install(this);
+        TestOnShoot os = new TestOnShoot();
+        os.Install(this);
+        gun.CalculateAllStats();
     }
 
     //Constructor
