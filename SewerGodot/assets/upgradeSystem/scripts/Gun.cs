@@ -54,9 +54,11 @@ public class Gun{
         this.fireDelay = new Stat<float>(firerate, (Stat<float> x)=>{});
         this.gunMultishot = new Stat<int>(gunMultishot, (Stat<int> x)=>{});
         
+        player.fireDelayTimer.WaitTime = fireDelay.value;
+        
         this.player = player;
         this.projectiles = new List<Projectile>();
-        
+
         OnShoot += (ProjectileEntity pe)=>{};
         OnEntityCollision += (ProjectileEntity pe, KinematicCollision2D kc) => {};
         OnProcess += (ProjectileEntity pe)=>{};

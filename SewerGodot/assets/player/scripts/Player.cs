@@ -25,18 +25,18 @@ public class Player : KinematicBody2D {
 
     public override void _Ready(){
         fireDelayTimer = GetNode<Timer>("FireDelayTimer");
+
+        gun = new Gun(0.2f, 1, this);
+
+        //FIXME: Remove this projectile, for test purposes only
+        TestProjectile p = new TestProjectile(gun);
+        p.Install(this);
     }
 
     //Constructor
     public Player(){
         moveSpeed = new Stat<float>(500f, (Stat<float> _) => {});
         health = new StateStat<int>(100, (Stat<int> _) => {}, 100);
-
-
-        gun = new Gun(1f, 1, this);
-        //FIXME: Remove this projectile, for test purposes only
-        TestProjectile p = new TestProjectile(gun);
-        p.Install(this);
     }
 
 

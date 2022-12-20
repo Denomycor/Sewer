@@ -17,11 +17,11 @@ public class TestProjectile : Projectile {
     }
 
     protected override void InitStatsAndPool() {
-        spread = new Stat<float>(0, Stat<float>.NullFunc, gun.spreadUpgrades);
+        spread = new Stat<float>(Mathf.Pi/2, Stat<float>.NullFunc, gun.spreadUpgrades);
         damage = new Stat<float>(1, Stat<float>.NullFunc, gun.damageUpgrades);
         speed = new Stat<float>(300, Stat<float>.NullFunc, gun.speedUpgrades);
         range = new Stat<float>(300, Stat<float>.NullFunc, gun.rangeUpgrades);
-        multishot = new Stat<int>(1, Stat<int>.NullFunc, gun.multishotUpgrades);
+        multishot = new Stat<int>(2, Stat<int>.NullFunc, gun.multishotUpgrades);
         size = new Stat<float>(1, Stat<float>.NullFunc, gun.sizeUpgrades);
 
         Path = new Stat<ProjectileEntity.PathFunction>(

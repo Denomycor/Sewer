@@ -103,7 +103,8 @@ public abstract class Projectile : AutoUpgrade {
     //Applies spread to a direction
     public virtual Vector2 GetDirectionWithSpread(){
         float spread = GetSpread();
-        return GetDirection().Rotated((float)(rd.NextDouble()*spread*2)-spread);
+        double angle = (rd.NextDouble()*spread*2)-spread;
+        return GetDirection().Rotated((float)angle);
     }
 
 
