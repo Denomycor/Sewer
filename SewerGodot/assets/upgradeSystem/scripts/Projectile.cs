@@ -54,12 +54,12 @@ public abstract class Projectile : AutoUpgrade {
     }
 
     //Assign this projectile to gun
-    protected virtual void AssignToGun(Player player){
+    protected void AssignToGun(Player player){
         player.gun.AddProjectile(this);
     }
 
     //Remove this projectile from gun
-    protected virtual void RemoveFromGun(Player player){
+    protected void RemoveFromGun(Player player){
         player.gun.RemoveProjectile(this);
     }
 
@@ -109,7 +109,7 @@ public abstract class Projectile : AutoUpgrade {
 
 
     //Destroy all objects in the pool
-    public virtual void ClearPool(){
+    public void ClearPool(){
         foreach (ProjectileEntity p in objectPool){
             p.Destroy();
         }
