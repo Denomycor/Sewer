@@ -1,32 +1,29 @@
 using System.Collections.Generic;
 
-/* Upgrade composed of multiple upgrades
- *
+/* Upgrade composed of multiple upgrades which just act as effects
+ * ! Upgrades from this bundle don't get an UpgradeMenuObj
  */
 public abstract class BundledUpgrade : Upgrade {
 
     public LinkedList<Upgrade> upgradeList {get;private set;}
 
-    //Whether this bundles' upgrades are just a composition of effects{true}, or a colletion of multiple actual upgrades{false}
-    //if true properties of upgrades in this list don't matter, as this is a single upgarde with just multiple effects
-    public bool staticBundle {get;private set;}
 
 ///Initializations
 
     //Constructor
-    public BundledUpgrade(string name, string texture, Type type, Rarity rarity, int defaultValueInt, bool staticBundle=false)
-        :base(name, texture, type, rarity, defaultValueInt)
+    public BundledUpgrade(string name, string texture, Type type, Rarity rarity, bool staticBundle=false)
+        :base(name, texture, type, rarity)
     {
         this.upgradeList = new LinkedList<Upgrade>();
-        this.staticBundle = staticBundle;
+        InitStartingUpgrades();
     }
 
     //Constructor
-    public BundledUpgrade(string name, string texture, Type type, Rarity rarity, int defaultValueInt, LinkedList<Upgrade> upgradeList, bool staticBundle=false)
-        :base(name, texture, type, rarity, defaultValueInt)
+    public BundledUpgrade(string name, string texture, Type type, Rarity rarity, LinkedList<Upgrade> upgradeList, bool staticBundle=false)
+        :base(name, texture, type, rarity)
     {
         this.upgradeList = upgradeList;
-        this.staticBundle = staticBundle;
+        InitStartingUpgrades();
     }
 
     //Install all upgrades
@@ -44,16 +41,9 @@ public abstract class BundledUpgrade : Upgrade {
     }
 
 
-///Logic
+///Abstracts
 
-    //Add Upgrade to bundle
-    public void AddUpgrade(Upgrade upgrade){
-        upgradeList.AddLast(upgrade);
-    }
-
-    //Remove Upgrade from bundle
-    public void RemoveUpgrade(Upgrade upgrade){
-        upgradeList.Remove(upgrade);
-    }
+    //Create upgrades for this bundle, don't forget to set isBundled to true
+    public abstract void InitStartingUpgrades();
 
 }
