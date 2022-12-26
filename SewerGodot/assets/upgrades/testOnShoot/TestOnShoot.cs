@@ -2,7 +2,7 @@ using Godot;
 
 public class TestOnShoot : HookUpgrade {
     public TestOnShoot()
-        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1)
+        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST)
     {
     }
 

@@ -2,7 +2,7 @@
 public class TestMultishot : StatUpgrade<int>{
    
     public TestMultishot()
-        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1, 1)
+        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1)
     {
     }
 

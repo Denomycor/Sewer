@@ -33,8 +33,8 @@ public abstract class Projectile : AutoUpgrade {
 ///Initializations
 
     //Constructor
-    protected Projectile(string name, string texture, Type type, Rarity rarity, int valueInt, Gun gun)
-        :base(name, texture, type, rarity, valueInt)
+    protected Projectile(string name, string texture, Type type, Rarity rarity, Gun gun)
+        :base(name, texture, type, rarity)
     {
         this.gun = gun;
         this.objectPool = new Queue<ProjectileEntity>();

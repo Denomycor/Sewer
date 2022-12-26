@@ -2,7 +2,7 @@
 
 public class TestSpread : StatUpgrade<float>{
     public TestSpread()
-        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1, 3)
+        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 3)
     {
     }
 

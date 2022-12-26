@@ -7,6 +7,8 @@ using System.Collections.Generic;
  */
 public /*FIXME: TEMP abstract*/ class Upgrade {
     
+    public static PackedScene MENU_OBJ_TEMPLATE = GD.Load<PackedScene>("res://assets/ui/upgradeMenu/scenes/UpgradeMenuObj.tscn");
+
     //Stat vars
     public string name {get; private set;}
 
@@ -15,11 +17,11 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 
     public Type type {get; private set;}
     public Rarity rarity {get; private set;}
-    protected int valueInt {get; private set;}
 
-    //State vars //TODO: figure how to initialize state vars
+    public bool isBundled {get; set;}
+
     public Dictionary<Vector2, int> connectionsMap;
-    public UpgradeMenuObj upgradeMenuObj;
+    public UpgradeMenuObj upgradeMenuObj = null;
 
 
 ///Initializations
@@ -28,15 +30,24 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     public Upgrade(){}
     
     //Constructor
-    public Upgrade(string name, string texture, Type type, Rarity rarity, int defaultValueInt){
+    public Upgrade(string name, string texture, Type type, Rarity rarity){
         this.name = name;
         this.spriteString = texture;
         this.sprite = GD.Load<Texture>(texture);
         this.type = type;
         this.rarity = rarity;
-        this.valueInt = defaultValueInt;
+        this.isBundled = false;
+        //FIXME: erase comment InitConnections();
     }
-
+    
+    //Instance UpgradeMenuObj and add it to upgradeMenu
+    public void CreateUpgradeMenuObj(UpgradeMenu upgradeMenu){
+        if(!isBundled){
+            upgradeMenuObj = MENU_OBJ_TEMPLATE.Instance<UpgradeMenuObj>();
+            upgradeMenuObj.Init(upgradeMenu);
+            upgradeMenu.grid.AddChild(upgradeMenuObj);
+        }
+    }
 
 ///Enums
 
@@ -70,7 +81,13 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
     }
 
     //Gets an integer representing how good an upgrade is
-    public virtual int GetValue(Player player){
+    public virtual int GetValue(){
+        //TODO: abstract
+        throw new NotImplementedException();
+    }
+
+    //Initializes connections map
+    public virtual int InitConnections(){
         //TODO: abstract
         throw new NotImplementedException();
     }

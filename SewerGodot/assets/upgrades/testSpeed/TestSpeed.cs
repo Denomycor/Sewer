@@ -3,7 +3,7 @@
 public class TestSpeed : StatUpgrade<float>{
     
     public TestSpeed()
-        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1, 700f)
+        :base("Test Multishot", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 700f)
     {
     }
 

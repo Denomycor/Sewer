@@ -3,7 +3,7 @@ using Godot;
 public class TestProjectile : Projectile {
     
     public TestProjectile(Gun gun)
-        :base("Test Projectile", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1, gun)
+        :base("Test Projectile", "res://icon.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, gun)
     {
     }
 

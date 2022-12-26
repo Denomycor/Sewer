@@ -43,13 +43,6 @@ public class UpgradeMenu : Control {
 
 ///Logic
 
-    //Adds a new UpgradeMenuObj from an Upgrade to the UpgradeMenu
-    public void AddUpgrade(Upgrade upgrade){
-        //TODO: also dont forget to add to allUpgrades
-        //Create UpradeMenuObj for this
-    }
-
-
     //Toggles this menu on screen
     public void MenuToggle(){
         GetTree().Paused = isPaused;

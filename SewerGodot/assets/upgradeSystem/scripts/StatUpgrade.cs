@@ -10,8 +10,8 @@ public abstract class StatUpgrade<T> : Upgrade {
 ///Initializations
 
     //Constructor
-    public StatUpgrade(string name, string texture, Type type, Rarity rarity, int defaultValueInt, T value)
-        :base(name, texture, type, rarity, defaultValueInt)
+    public StatUpgrade(string name, string texture, Type type, Rarity rarity, T value)
+        :base(name, texture, type, rarity)
     {
         this.value = value;
     }

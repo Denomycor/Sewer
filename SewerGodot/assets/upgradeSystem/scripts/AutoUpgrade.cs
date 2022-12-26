@@ -7,8 +7,8 @@ public abstract class AutoUpgrade : Upgrade {
 ///Initializations
 
     //Constructor
-    public AutoUpgrade(string name, string texture, Type type, Rarity rarity, int defaultValueInt)
-        :base(name, texture, type, rarity, defaultValueInt)
+    public AutoUpgrade(string name, string texture, Type type, Rarity rarity)
+        :base(name, texture, type, rarity)
     {
     }
 
