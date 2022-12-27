@@ -43,6 +43,12 @@ public class UpgradeMenuObj : Control {
         recordRef = upgradeMenu.record;
         upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
 
+        InitVisualConnections();
+    }
+
+    //Inits visual connections
+    public void InitVisualConnections(){
+        //TODO: Implement
     }
 
 

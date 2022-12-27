@@ -132,7 +132,6 @@ public class UpgradeMenu : Control {
     }
 
 
-
 ///DEBUG
 
     public override void _Input(InputEvent e){
