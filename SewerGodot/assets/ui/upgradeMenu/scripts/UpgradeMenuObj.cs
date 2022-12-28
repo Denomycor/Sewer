@@ -13,7 +13,7 @@ public class UpgradeMenuObj : Control {
 
     //Stat vars
     public Upgrade upgradeRef;
-    public readonly bool isStatic = false;
+    public bool isStatic;
 
     //State vars
     public bool inUse = false;
@@ -32,12 +32,12 @@ public class UpgradeMenuObj : Control {
     }
 
     //Init vars
-    public void Init(UpgradeMenu upgradeMenu){
+    public void Init(UpgradeMenu upgradeMenu, bool isStatic=false){
+        this.isStatic = isStatic;
         this.upgradeMenu = upgradeMenu;
         upgradeMenuTiles = upgradeMenu.upgradeMenuTiles;
         recordRef = upgradeMenu.record;
         upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
-        
 
         InitVisualConnections();
     }

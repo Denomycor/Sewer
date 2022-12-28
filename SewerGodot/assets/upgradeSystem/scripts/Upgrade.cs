@@ -43,7 +43,24 @@ public abstract class Upgrade {
             upgradeMenuObj = MENU_OBJ_TEMPLATE.Instance<UpgradeMenuObj>();
             upgradeMenuObj.upgradeRef = this;
             upgradeMenuObj.Init(upgradeMenu);
+
             upgradeMenu.grid.AddChild(upgradeMenuObj);
+            upgradeMenu.allUpgrades.AddLast(upgradeMenuObj);
+        }
+    }
+
+    //Instance a static UpgradeMenuObj and add it to upgradeMenu
+    public void CreateStaticUpgradeMenuObj(UpgradeMenu upgradeMenu, Vector2 pos){
+        if(!isBundled){
+            upgradeMenuObj = MENU_OBJ_TEMPLATE.Instance<UpgradeMenuObj>();
+            upgradeMenuObj.upgradeRef = this;
+            upgradeMenuObj.Init(upgradeMenu, true);
+            
+            upgradeMenuObj.inUse = true;
+            upgradeMenuObj.recordRef.Set(pos, upgradeMenuObj);
+            upgradeMenuObj.SetPosThroughTile(pos);
+            upgradeMenuObj.upgradeMenuTiles.AddChild(upgradeMenuObj);
+
             upgradeMenu.allUpgrades.AddLast(upgradeMenuObj);
         }
     }
@@ -52,7 +69,7 @@ public abstract class Upgrade {
 ///Enums
 
     public enum Type {
-        PLAYERSTAT, PROJECTILE, TEST,
+        PLAYERSTAT, PROJECTILE, TEST, ROOT,
     }
 
     public enum Rarity {

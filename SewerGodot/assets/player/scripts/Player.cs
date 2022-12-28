@@ -37,6 +37,9 @@ public class Player : KinematicBody2D {
 
     //FIXME: Remove this projectile, for test purposes only
     public void CreateUpgrades(UpgradeMenu um){
+        Root r = new Root();
+        r.CreateStaticUpgradeMenuObj(um, new Vector2(12, 6));
+
         TestProjectile p = new TestProjectile(gun);
         p.Install(this);
         p.CreateUpgradeMenuObj(um);
@@ -48,12 +51,14 @@ public class Player : KinematicBody2D {
         TestSpread sp = new TestSpread();
         sp.Install(this);
         sp.CreateUpgradeMenuObj(um);
+
         /*TestMultishot m2 = new TestMultishot();
         m2.Install(this);
         TestSpeed s = new TestSpeed();
         s.Install(this);
         TestOnShoot os = new TestOnShoot();
         os.Install(this);*/
+
         gun.CalculateAllStats();
     }
 
