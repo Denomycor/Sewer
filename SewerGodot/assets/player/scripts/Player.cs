@@ -39,27 +39,31 @@ public class Player : KinematicBody2D {
     public void CreateUpgrades(UpgradeMenu um){
         Root r = new Root();
         r.CreateStaticUpgradeMenuObj(um, new Vector2(12, 6));
+        um.root = r.upgradeMenuObj;
 
         TestProjectile p = new TestProjectile(gun);
-        p.Install(this);
+        //p.Install(this);
         p.CreateUpgradeMenuObj(um);
 
         TestMultishot m = new TestMultishot();
-        m.Install(this);
+        //m.Install(this);
         m.CreateUpgradeMenuObj(um);
 
         TestSpread sp = new TestSpread();
-        sp.Install(this);
+        //sp.Install(this);
         sp.CreateUpgradeMenuObj(um);
+
+        TestSpeed s = new TestSpeed();
+        //s.Install(this);
+        s.CreateUpgradeMenuObj(um);
 
         /*TestMultishot m2 = new TestMultishot();
         m2.Install(this);
-        TestSpeed s = new TestSpeed();
-        s.Install(this);
+        
         TestOnShoot os = new TestOnShoot();
         os.Install(this);*/
 
-        gun.CalculateAllStats();
+        //gun.CalculateAllStats();
     }
 
 ///Logic

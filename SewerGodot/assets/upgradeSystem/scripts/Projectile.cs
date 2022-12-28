@@ -42,14 +42,14 @@ public abstract class Projectile : AutoUpgrade {
     }
 
     //Install upgrade
-    public override void Install(Player player){
-        base.Install(player);
+    public override void InstallImpl(Player player){
+        base.InstallImpl(player);
         AssignToGun(player);
     }
 
     //Remove upgrade
-    public override void Remove(Player player){
-        base.Remove(player);
+    public override void RemoveImpl(Player player){
+        base.RemoveImpl(player);
         RemoveFromGun(player);
     }
 

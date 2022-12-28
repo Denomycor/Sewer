@@ -14,7 +14,8 @@ public class TestProjectile : Projectile {
     }
 
     protected override void RemoveScene(Player player){
-        ClearPool();
+        //Always save projectileEntities
+        //ClearPool();
     }
 
     protected override void InitStatsAndPool() {

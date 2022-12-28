@@ -27,16 +27,16 @@ public abstract class BundledUpgrade : Upgrade {
     }
 
     //Install all upgrades
-    public override void Install(Player player){
+    public override void InstallImpl(Player player){
         foreach(Upgrade u in upgradeList){
-            u.Install(player);
+            u.InstallImpl(player);
         }
     }
 
     //Remove all upgrades
-    public override void Remove(Player player){
+    public override void RemoveImpl(Player player){
         foreach(Upgrade u in upgradeList){
-            u.Remove(player);
+            u.RemoveImpl(player);
         }
     }
 

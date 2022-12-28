@@ -18,12 +18,12 @@ public abstract class StatUpgrade<T> : Upgrade {
 
 
     //Overriding this must call base.Install()
-    public override void Install(Player player){
+    public override void InstallImpl(Player player){
         BindToStat(player);
     }
 
     //Overriding this must call base.Remove()
-    public override void Remove(Player player){
+    public override void RemoveImpl(Player player){
         UnbindFromStat(player);
     }
 

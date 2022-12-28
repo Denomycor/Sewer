@@ -23,6 +23,8 @@ public abstract class Upgrade {
     public Dictionary<Vector2, int> connectionsMap;
     public UpgradeMenuObj upgradeMenuObj = null;
 
+    public bool isInstalled = false;
+
 
 ///Initializations
     
@@ -59,10 +61,22 @@ public abstract class Upgrade {
             upgradeMenuObj.inUse = true;
             upgradeMenuObj.recordRef.Set(pos, upgradeMenuObj);
             upgradeMenuObj.SetPosThroughTile(pos);
-            upgradeMenuObj.upgradeMenuTiles.AddChild(upgradeMenuObj);
+            upgradeMenuObj.upgradeMenuTiles.tileMap.AddChild(upgradeMenuObj);
 
             upgradeMenu.allUpgrades.AddLast(upgradeMenuObj);
         }
+    }
+
+///Logic
+
+    public void Install(Player player){
+        isInstalled = true;
+        InstallImpl(player);
+    }
+
+    public void Remove(Player player){
+        isInstalled = false;
+        RemoveImpl(player);
     }
 
 
@@ -83,10 +97,10 @@ public abstract class Upgrade {
     public abstract string GetDescription();
 
     //Prepare upgrade, initialize scenes etc
-    public abstract void Install(Player player);
+    public abstract void InstallImpl(Player player);
 
     //Frees resources
-    public abstract void Remove(Player player);
+    public abstract void RemoveImpl(Player player);
 
     //Gets an integer representing how good an upgrade is
     public abstract int GetValue();

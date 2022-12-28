@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class TestSpread : StatUpgrade<float>{
     public TestSpread()
-        :base("Test Multishot", "res://green.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 3)
+        :base("Test Spread", "res://green.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 3)
     {
     }
 

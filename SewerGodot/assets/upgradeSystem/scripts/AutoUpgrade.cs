@@ -14,12 +14,12 @@ public abstract class AutoUpgrade : Upgrade {
 
 
     //Overriding this must call base.Install()
-    public override void Install(Player player){
+    public override void InstallImpl(Player player){
         PrepareScene(player);
     }
 
     //Overriding this must call base.Remove()
-    public override void Remove(Player player){
+    public override void RemoveImpl(Player player){
         RemoveScene(player);
     }
 

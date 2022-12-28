@@ -23,6 +23,8 @@ public class UpgradeMenu : Control {
     //player
     public Player player;
 
+    //root
+    public UpgradeMenuObj root;
 
 ///Initializations
 
@@ -39,34 +41,35 @@ public class UpgradeMenu : Control {
 
     //Toggles this menu on screen
     public void MenuToggle(){
+        if(!isPaused){
+            MenuLeave();
+        }
         GetTree().Paused = isPaused;
         GetParent<CanvasLayer>().Visible = isPaused;
         upgradeMenuContext.SetProcessInput(isPaused);
         if(isPaused){
             MenuEnter();
-            isPaused = false;
-        }else{
-            MenuLeave();
-            isPaused = true;
         }
+        isPaused = !isPaused;
     }
 
 
     //Called on entering the Menu
     public void MenuEnter(){
-        //TODO: Called on entering the menu
+
     }
 
     //Called on leaving the Menu
     public void MenuLeave(){
-        //TODO: Root upgrdeObj -----------------------------------vvvv
-        //player.activeUpgrades = CalculateActiveUpgradesAndInstall(null);
-        //CalculateAllStats();
+        if(root != null){ //wait for initializations
+            player.activeUpgrades = CalculateActiveUpgradesAndInstall();
+            CalculateAllStats();
+        }
     }
 
 
     //Check tileState and set active upgrades accordingly
-    public LinkedList<Upgrade> CalculateActiveUpgradesAndInstall(UpgradeMenuObj root){
+    public LinkedList<Upgrade> CalculateActiveUpgradesAndInstall(){
         LinkedList<Upgrade> activeUpgrades = new LinkedList<Upgrade>();
         foreach(UpgradeMenuObj o in allUpgrades){
             o.visited = false;
@@ -84,6 +87,7 @@ public class UpgradeMenu : Control {
             if(!o.visited){
                 if(o.initialized){
                     o.initialized = false;
+                    GD.Print("Remove: ", o.upgradeRef.name); //TEMP
                     o.upgradeRef.Remove(player);
                 }
             }
@@ -101,6 +105,8 @@ public class UpgradeMenu : Control {
 
         if(!current.initialized){
             current.initialized = true;
+            
+            GD.Print("Installed: ", current.upgradeRef.name); //TEMP
             current.upgradeRef.Install(player);
         }
         

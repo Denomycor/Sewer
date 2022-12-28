@@ -18,13 +18,13 @@ public abstract class HookUpgrade : Upgrade {
 
 
     //Overriding this must call base.Install()
-    public override void Install(Player player){
+    public override void InstallImpl(Player player){
         isBinded = true;
         AddAction(player);
     }
 
     //Overriding this must call base.Remove()
-    public override void Remove(Player player){
+    public override void RemoveImpl(Player player){
         isBinded = false;
         RemoveAction(player);
     }

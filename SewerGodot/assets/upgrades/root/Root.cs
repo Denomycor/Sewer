@@ -24,11 +24,11 @@ public class Root : Upgrade {
         connectionsMap.Add(Vector2.Right, 1);
     }
 
-    public override void Install(Player player){
+    public override void InstallImpl(Player player){
         //No installation
     }
 
-    public override void Remove(Player player){
+    public override void RemoveImpl(Player player){
         //No remove
     }
 
