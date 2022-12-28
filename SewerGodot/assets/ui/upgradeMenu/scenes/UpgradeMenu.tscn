@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/ui/upgradeMenu/scenes/UpgradeMenuObj.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/upgradeMenu/scenes/UpgradeMenuTiles.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/ui/upgradeMenu/scripts/UpgradeMenu.cs" type="Script" id=3]
 [ext_resource path="res://assets/ui/upgradeMenu/scripts/UpgradeMenuScroll.cs" type="Script" id=4]
@@ -35,39 +34,14 @@ scroll_horizontal_enabled = false
 script = ExtResource( 4 )
 
 [node name="List" type="VBoxContainer" parent="Main/RightPanel/ScrollPanel/Scroll"]
-margin_right = 240.0
-margin_bottom = 80.0
 mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="Grid" type="GridContainer" parent="Main/RightPanel/ScrollPanel/Scroll/List"]
-margin_right = 240.0
-margin_bottom = 80.0
 mouse_filter = 2
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
 columns = 3
-
-[node name="UpgradeMenuObj" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="UpgradeMenuObj2" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
-modulate = Color( 0.639216, 0.894118, 0.129412, 1 )
-margin_left = 80.0
-margin_right = 160.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="UpgradeMenuObj3" parent="Main/RightPanel/ScrollPanel/Scroll/List/Grid" instance=ExtResource( 1 )]
-modulate = Color( 0.894118, 0.164706, 0.129412, 1 )
-margin_left = 160.0
-margin_right = 240.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="UpgradeMenuContext" parent="Main" instance=ExtResource( 5 )]
 visible = false

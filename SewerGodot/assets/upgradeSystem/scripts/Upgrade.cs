@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /* Base class for all upgades
  * not abstract so UpgradeMenu can be tested
  */
-public /*FIXME: TEMP abstract*/ class Upgrade {
+public abstract class Upgrade {
     
     public static PackedScene MENU_OBJ_TEMPLATE = GD.Load<PackedScene>("res://assets/ui/upgradeMenu/scenes/UpgradeMenuObj.tscn");
 
@@ -25,9 +25,6 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 
 
 ///Initializations
-
-    //FIXME: TEMP
-    public Upgrade(){}
     
     //Constructor
     public Upgrade(string name, string texture, Type type, Rarity rarity){
@@ -37,17 +34,20 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
         this.type = type;
         this.rarity = rarity;
         this.isBundled = false;
-        //FIXME: erase comment InitConnections();
+        InitConnections();
     }
     
     //Instance UpgradeMenuObj and add it to upgradeMenu
     public void CreateUpgradeMenuObj(UpgradeMenu upgradeMenu){
         if(!isBundled){
             upgradeMenuObj = MENU_OBJ_TEMPLATE.Instance<UpgradeMenuObj>();
+            upgradeMenuObj.upgradeRef = this;
             upgradeMenuObj.Init(upgradeMenu);
             upgradeMenu.grid.AddChild(upgradeMenuObj);
+            upgradeMenu.allUpgrades.AddLast(upgradeMenuObj);
         }
     }
+
 
 ///Enums
 
@@ -63,33 +63,18 @@ public /*FIXME: TEMP abstract*/ class Upgrade {
 ///Abstracts
 
     //gets this upgrade description
-    public virtual string GetDescription(){
-        //TODO: abstract
-        throw new NotImplementedException();
-    }
+    public abstract string GetDescription();
 
     //Prepare upgrade, initialize scenes etc
-    public virtual void Install(Player player){
-        //TODO: abstract
-        throw new NotImplementedException();
-    }
+    public abstract void Install(Player player);
 
     //Frees resources
-    public virtual void Remove(Player player){
-        //TODO: abstract
-        throw new NotImplementedException();
-    }
+    public abstract void Remove(Player player);
 
     //Gets an integer representing how good an upgrade is
-    public virtual int GetValue(){
-        //TODO: abstract
-        throw new NotImplementedException();
-    }
+    public abstract int GetValue();
 
     //Initializes connections map
-    public virtual int InitConnections(){
-        //TODO: abstract
-        throw new NotImplementedException();
-    }
+    public abstract void InitConnections();
 
 }
