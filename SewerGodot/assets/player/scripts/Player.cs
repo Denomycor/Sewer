@@ -27,21 +27,6 @@ public class Player : KinematicBody2D {
         fireDelayTimer = GetNode<Timer>("FireDelayTimer");
 
         gun = new Gun(0.2f, 1, this);
-
-        //FIXME: Remove this projectile, for test purposes only
-        TestProjectile p = new TestProjectile(gun);
-        p.Install(this);
-        TestMultishot m = new TestMultishot();
-        m.Install(this);
-        TestSpread sp = new TestSpread();
-        sp.Install(this);
-        /*TestMultishot m2 = new TestMultishot();
-        m2.Install(this);
-        TestSpeed s = new TestSpeed();
-        s.Install(this);
-        TestOnShoot os = new TestOnShoot();
-        os.Install(this);*/
-        gun.CalculateAllStats();
     }
 
     //Constructor
@@ -50,6 +35,27 @@ public class Player : KinematicBody2D {
         health = new StateStat<int>(100, (Stat<int> _) => {}, 100);
     }
 
+    //FIXME: Remove this projectile, for test purposes only
+    public void CreateUpgrades(UpgradeMenu um){
+        TestProjectile p = new TestProjectile(gun);
+        p.Install(this);
+        p.CreateUpgradeMenuObj(um);
+
+        TestMultishot m = new TestMultishot();
+        m.Install(this);
+        m.CreateUpgradeMenuObj(um);
+
+        TestSpread sp = new TestSpread();
+        sp.Install(this);
+        sp.CreateUpgradeMenuObj(um);
+        /*TestMultishot m2 = new TestMultishot();
+        m2.Install(this);
+        TestSpeed s = new TestSpeed();
+        s.Install(this);
+        TestOnShoot os = new TestOnShoot();
+        os.Install(this);*/
+        gun.CalculateAllStats();
+    }
 
 ///Logic
 

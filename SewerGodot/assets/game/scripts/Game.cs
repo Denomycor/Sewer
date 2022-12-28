@@ -18,6 +18,8 @@ public class Game : Node {
         player = GetNode<Player>("Room/YSort/Player");
         upgradeMenu.MenuToggle();
         upgradeMenu.player = player;
+
+        player.CreateUpgrades(upgradeMenu);
     }
 
 }

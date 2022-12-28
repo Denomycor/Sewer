@@ -32,12 +32,6 @@ public class UpgradeMenu : Control {
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
 
         record = new Matrix<UpgradeMenuObj>(upgradeMenuTiles.tileMap.GetUsedRect());
-
-        //FIXME: temp, init pre-existing UpgradeMenuObj, on the final products all instances of this scene are created dinamycally
-        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj").Init(this);
-        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj2").Init(this);
-        GetNode<UpgradeMenuObj>("RightPanel/ScrollPanel/Scroll/List/Grid/UpgradeMenuObj3").Init(this);
-
     }
 
 

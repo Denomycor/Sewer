@@ -26,22 +26,18 @@ public class UpgradeMenuObj : Control {
 
 ///Initializations
 
-    /* FIXME: TEMP Simulate having an Upgrade object*/
-    public UpgradeMenuObj(){
-        this.upgradeRef = new Upgrade();
-        upgradeRef.connectionsMap = new Dictionary<Vector2, int>(4);
-        upgradeRef.connectionsMap.Add(Vector2.Up, 1);
-        upgradeRef.connectionsMap.Add(Vector2.Right, -1);
-        upgradeRef.connectionsMap.Add(Vector2.Down, 1);
-        upgradeRef.connectionsMap.Add(Vector2.Left, -1);
+    //Ready func
+    public override void _Ready() {
+        GetNode<Sprite>("Sprite").Texture = upgradeRef.sprite;
     }
-    /* TEMP */
 
+    //Init vars
     public void Init(UpgradeMenu upgradeMenu){
         this.upgradeMenu = upgradeMenu;
         upgradeMenuTiles = upgradeMenu.upgradeMenuTiles;
         recordRef = upgradeMenu.record;
         upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
+        
 
         InitVisualConnections();
     }
