@@ -49,8 +49,8 @@ public abstract class Projectile : AutoUpgrade {
 
     //Remove upgrade
     public override void RemoveImpl(Player player){
-        base.RemoveImpl(player);
         RemoveFromGun(player);
+        base.RemoveImpl(player);
     }
 
     //Assign this projectile to gun

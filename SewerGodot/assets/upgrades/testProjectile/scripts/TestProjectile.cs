@@ -1,21 +1,13 @@
 using Godot;
 using System.Collections.Generic;
 
+//Note how should we handle projectileTemplate var, it should be static, but we dont it always instanciated
+
 public class TestProjectile : Projectile {
     
     public TestProjectile(Gun gun)
         :base("Test Projectile", "res://red.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, gun)
     {
-    }
-
-    
-    protected override void PrepareScene(Player player){
-        projectileTemplate = GD.Load<PackedScene>("res://assets/upgrades/testProjectile/scenes/TestProjectile.tscn");
-    }
-
-    protected override void RemoveScene(Player player){
-        //Always save projectileEntities
-        //ClearPool();
     }
 
     protected override void InitStatsAndPool() {
@@ -48,5 +40,13 @@ public class TestProjectile : Projectile {
         connectionsMap.Add(Vector2.Down, 1);
         connectionsMap.Add(Vector2.Left, -1);
         connectionsMap.Add(Vector2.Right, -1);
+    }
+
+    protected override void PrepareScene(Player player){
+        projectileTemplate = GD.Load<PackedScene>("res://assets/upgrades/testProjectile/scenes/TestProjectile.tscn");
+    }
+
+    protected override void RemoveScene(Player player){
+        projectileTemplate = null;
     }
 }
