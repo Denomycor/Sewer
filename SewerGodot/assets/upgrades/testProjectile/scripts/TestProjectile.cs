@@ -46,7 +46,7 @@ public class TestProjectile : Projectile {
         this.connectionsMap = new Dictionary<Godot.Vector2, int>();
         connectionsMap.Add(Vector2.Up, 1);
         connectionsMap.Add(Vector2.Down, 1);
-        connectionsMap.Add(Vector2.Left, -1);
-        connectionsMap.Add(Vector2.Right, -1);
+        connectionsMap.Add(Vector2.Left, 1);
+        connectionsMap.Add(Vector2.Right, 1);
     }
 }
