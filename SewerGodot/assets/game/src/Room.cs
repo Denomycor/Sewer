@@ -1,15 +1,25 @@
 using Godot;
 using System.Collections.Generic;
 
-public class Room : Node2D
+public class Room : YSort
 {
-    public List<Gate> gateList = new List<Gate>();
+    [Export]
+    private List<Gate> gateList = new List<Gate>();
+    private Map map;
 
-    public override async void _Ready()
+    public Room(){
+        
+    }
+
+    public override void _Ready()
     {
+        //instantiate vars
+        map = Map.GetInstance();
         //wait for tile map to replace tiles with scenes (to instantiate the gate objects)
+        /*
         await ToSignal(GetTree(), "idle_frame");
         FindGates();
+        */
     }
 
     //searches for gates 
@@ -20,5 +30,13 @@ public class Room : Node2D
                 gateList.Add(child as Gate);
             }
         }
+    }
+
+    //returns gate from gate list
+    public Gate GetGate(int gateIndex){
+        if(gateList[gateIndex]!=null){
+            return gateList[gateIndex];
+        }
+        else{return null;}
     }
 }
