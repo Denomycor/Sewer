@@ -27,7 +27,6 @@ public class Matrix<T> : IEnumerable {
     }
 
     public Matrix(Rect2 rec){
-        Vector2 upperLeft = rec.Position;
         this.xLenght = (int)(rec.End.x - rec.Position.x);
         this.yLenght = (int)(rec.End.y - rec.Position.y);
         this.offset = rec.Position;
