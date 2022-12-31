@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/ui/upgradeMenu/scripts/UpgradeMenuScroll.cs" type="Script" id=1]
+
+[node name="RightPanel" type="MarginContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -240.0
+rect_min_size = Vector2( 240, 0 )
+
+[node name="ScrollPanel" type="Panel" parent="."]
+margin_right = 240.0
+margin_bottom = 1080.0
+
+[node name="Scroll" type="ScrollContainer" parent="ScrollPanel"]
+margin_right = 240.0
+margin_bottom = 1080.0
+scroll_horizontal_enabled = false
+script = ExtResource( 1 )
+
+[node name="List" type="VBoxContainer" parent="ScrollPanel/Scroll"]
+mouse_filter = 2
+custom_constants/separation = 0
+
+[node name="Grid" type="GridContainer" parent="ScrollPanel/Scroll/List"]
+mouse_filter = 2
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class TestSpeed : StatUpgrade<float>{
     
     public TestSpeed()
-        :base("Test Speed", "res://yellow.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 700f)
+        :base("Test Speed", "res://assets/ui/upgradeMenu/sprites/white.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 700f)
     {
     }
 

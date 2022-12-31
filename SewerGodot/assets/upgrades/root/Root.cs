@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Root : Upgrade {
     
     public Root()
-        :base("Root", "res://root.png", Type.ROOT, Rarity.COMMON)
+        :base("Root", "res://assets/ui/upgradeMenu/sprites/root.png", Type.ROOT, Rarity.COMMON)
     {
     }
 

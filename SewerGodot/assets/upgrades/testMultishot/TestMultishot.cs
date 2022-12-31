@@ -4,7 +4,7 @@ using Godot;
 public class TestMultishot : StatUpgrade<int>{
    
     public TestMultishot()
-        :base("Test Multishot", "res://blue.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1)
+        :base("Test Multishot", "res://assets/ui/upgradeMenu/sprites/blue.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, 1)
     {
     }
 

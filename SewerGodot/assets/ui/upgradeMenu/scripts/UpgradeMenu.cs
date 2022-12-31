@@ -7,8 +7,7 @@ using System.Collections.Generic;
  */
 public class UpgradeMenu : Control {
     
-    //Constants
-    public static Vector2 PAN_LIMITS = new Vector2(1682, 1082);
+    public Vector2 panLimits;
 
     //Node vars
     public UpgradeMenuTiles upgradeMenuTiles;
@@ -32,6 +31,10 @@ public class UpgradeMenu : Control {
         upgradeMenuTiles = GetNode<UpgradeMenuTiles>("UpgradeMenuTiles");
         upgradeMenuContext = GetNode<UpgradeMenuContext>("UpgradeMenuContext");
         grid = GetNode<GridContainer>("RightPanel/ScrollPanel/Scroll/List/Grid");
+        
+        upgradeMenuTiles.upgradeMenu = this;
+
+        panLimits = new Vector2(GetNode<Control>("RightPanel").RectPosition.x+2, 1082);
 
         record = new Matrix<UpgradeMenuObj>(upgradeMenuTiles.tileMap.GetUsedRect());
     }

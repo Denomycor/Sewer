@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class TestProjectile : Projectile {
     
     public TestProjectile(Gun gun)
-        :base("Test Projectile", "res://red.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, gun)
+        :base("Test Projectile", "res://assets/ui/upgradeMenu/sprites/red.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST, gun)
     {
     }
 

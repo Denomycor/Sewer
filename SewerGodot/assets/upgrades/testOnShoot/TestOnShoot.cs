@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class TestOnShoot : HookUpgrade {
     public TestOnShoot()
-        :base("Test Multishot", "res://yellow.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST)
+        :base("Test Multishot", "res://assets/ui/upgradeMenu/sprites/yellow.png", Upgrade.Type.TEST, Upgrade.Rarity.TEST)
     {
     }
 
