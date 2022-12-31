@@ -122,6 +122,10 @@ public class UpgradeMenuObj : Control {
         Vector2 tileCoord = upgradeMenuTiles.tileMap.WorldToMap(position - upgradeMenuTiles.tileMap.Position);
         bool result = true;
 
+        if(!upgradeMenuTiles.tileMap.GetUsedRect().HasPoint(tileCoord)){
+            return false;
+        }
+
         foreach(Vector2 d in ApplicableDirections(tileCoord)){
             UpgradeMenuObj other = upgradeMenu.record.GetRelative(tileCoord, d);
             if(other != null){
