@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/yellow.png-1fff2f74667453120412091eeb717b92.stex"
+path="res://.import/green.png-fd5191b312cca2238e070e1da62dbbda.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://yellow.png"
-dest_files=[ "res://.import/yellow.png-1fff2f74667453120412091eeb717b92.stex" ]
+source_file="res://assets/ui/upgradeMenu/sprites/green.png"
+dest_files=[ "res://.import/green.png-fd5191b312cca2238e070e1da62dbbda.stex" ]
 
 [params]
 

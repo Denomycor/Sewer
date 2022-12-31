@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/root.png-0236cd860ef002ecf12e2a52925215e7.stex"
+path="res://.import/tile80.png-048b33f0d50f376c1c70dbb61d5c9721.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://root.png"
-dest_files=[ "res://.import/root.png-0236cd860ef002ecf12e2a52925215e7.stex" ]
+source_file="res://assets/ui/upgradeMenu/sprites/tile80.png"
+dest_files=[ "res://.import/tile80.png-048b33f0d50f376c1c70dbb61d5c9721.stex" ]
 
 [params]
 
