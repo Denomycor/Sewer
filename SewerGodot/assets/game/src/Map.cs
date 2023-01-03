@@ -63,7 +63,6 @@ public class Map : Node2D
         currentRoomIndex = roomIndex;
         currentRoom = roomList[currentRoomIndex];
 
-        GD.Print(player.GetParent() == this);
         RemoveChild(player);
         currentRoom.AddChild(player);
         currentRoom.GetGate(gateIndex).DeployPlayer(player);
