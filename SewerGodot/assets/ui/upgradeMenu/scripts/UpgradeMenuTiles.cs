@@ -7,17 +7,20 @@ public class UpgradeMenuTiles : Control{
 
     //Node vars
     public TileMap tileMap;
+    public UpgradeMenu upgradeMenu;
 
     //State vars
     public bool beingDragged = false;
 
 
+///Initializations
 
     public override void _Ready() {
         tileMap = GetNode<TileMap>("TileMap");
     }
 
 
+///Logic
 
     public override void _GuiInput(InputEvent e){
         if(e.IsActionPressed("pan")){
@@ -32,7 +35,6 @@ public class UpgradeMenuTiles : Control{
     }
 
 
-
     //Moves tileset
     public void Pan(Vector2 relative){
         Rect2 tileArea = tileMap.GetUsedRect();
@@ -40,12 +42,11 @@ public class UpgradeMenuTiles : Control{
         tileArea.Position *= tileMap.CellSize;
 
         Vector2 final = new Vector2();
-        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, UpgradeMenu.PAN_LIMITS.x-tileArea.End.x, -2-tileArea.Position.x);
-        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, UpgradeMenu.PAN_LIMITS.y-tileArea.End.y, -2-tileArea.Position.y);
+        final.x = Mathf.Clamp(tileMap.Position.x+relative.x, upgradeMenu.panLimits.x-tileArea.End.x, -2-tileArea.Position.x);
+        final.y = Mathf.Clamp(tileMap.Position.y+relative.y, upgradeMenu.panLimits.y-tileArea.End.y, -2-tileArea.Position.y);
 
         tileMap.Position = final;
     }
-
 
 
     public override bool CanDropData(Vector2 position, object data) {

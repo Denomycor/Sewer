@@ -13,34 +13,42 @@ public class UpgradeMenuObj : Control {
 
     //Stat vars
     public Upgrade upgradeRef;
-    public readonly bool isStatic = false;
+    public bool isStatic;
 
     //State vars
-    public bool visited;
     public bool inUse = false;
     public Matrix<UpgradeMenuObj> recordRef;
     
+    //Fold state vars
+    public bool visited = false;
+    public bool initialized = false;
 
 
-    /* FIXME: TEMP Simulate having an Upgrade object*/
-    public UpgradeMenuObj(){
-        this.upgradeRef = new Upgrade();
-        upgradeRef.connectionsMap = new Dictionary<Vector2, int>(4);
-        upgradeRef.connectionsMap.Add(Vector2.Up, 1);
-        upgradeRef.connectionsMap.Add(Vector2.Right, -1);
-        upgradeRef.connectionsMap.Add(Vector2.Down, 1);
-        upgradeRef.connectionsMap.Add(Vector2.Left, -1);
+///Initializations
+
+    //Ready func
+    public override void _Ready() {
+        GetNode<Sprite>("Sprite").Texture = upgradeRef.sprite;
     }
-    /* TEMP */
 
-    public void Init(UpgradeMenu upgradeMenu){
+    //Init vars
+    public void Init(UpgradeMenu upgradeMenu, bool isStatic=false){
+        this.isStatic = isStatic;
         this.upgradeMenu = upgradeMenu;
         upgradeMenuTiles = upgradeMenu.upgradeMenuTiles;
         recordRef = upgradeMenu.record;
         upgradeMenuContext = upgradeMenu.GetNode<UpgradeMenuContext>("UpgradeMenuContext");
 
+        InitVisualConnections();
     }
 
+    //Inits visual connections
+    public void InitVisualConnections(){
+        //TODO: Implement
+    }
+
+
+///Logic
 
     //Godot functions
     public override void _GuiInput(InputEvent e){
@@ -102,7 +110,7 @@ public class UpgradeMenuObj : Control {
     }
 
 
-/// Drag system - Checks on where it can be dropped
+///Drag system - Checks on where it can be dropped
 
     //Can this go on grid
     public bool CanGoOnGrid(){
@@ -113,6 +121,10 @@ public class UpgradeMenuObj : Control {
     public bool CanGoOnTile(Vector2 position){
         Vector2 tileCoord = upgradeMenuTiles.tileMap.WorldToMap(position - upgradeMenuTiles.tileMap.Position);
         bool result = true;
+
+        if(!upgradeMenuTiles.tileMap.GetUsedRect().HasPoint(tileCoord)){
+            return false;
+        }
 
         foreach(Vector2 d in ApplicableDirections(tileCoord)){
             UpgradeMenuObj other = upgradeMenu.record.GetRelative(tileCoord, d);
@@ -150,12 +162,11 @@ public class UpgradeMenuObj : Control {
                 return CanGoOnThis(obj);
             }
         }
-
         return false;
     }
 
 
-/// Drag system - Places objs in new positions
+///Drag system - Places objs in new positions
 
     //Switch places with objs
     public void SwitchPos(UpgradeMenuObj obj){
