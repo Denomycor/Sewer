@@ -5,7 +5,9 @@ public class Map : Node2D
 {
     //singleton pattern
     private Map(){
-        instance = this;
+        if (instance == null){
+            instance = this;
+        }
     }
     public static Map GetInstance(){
         if (instance == null){
@@ -45,7 +47,7 @@ public class Map : Node2D
             roomList[roomIndex1].GetGate(gateIndex1)?.Connect(roomIndex2, gateIndex2);
         }
         //set variables for 2nd gate
-        if(roomList[roomIndex1]!=null){
+        if(roomList[roomIndex2]!=null){
             roomList[roomIndex2].GetGate(gateIndex2)?.Connect(roomIndex1, gateIndex1);
         }
     }
@@ -72,11 +74,11 @@ public class Map : Node2D
         currentRoom.RemoveChild(player);
         RemoveChild(currentRoom);
 
-        CallDeferred("add_child", roomList[roomIndex]);
+        AddChild(roomList[roomIndex]);
         currentRoomIndex = roomIndex;
         currentRoom = roomList[currentRoomIndex];
 
-        //currentRoom.AddChild(player);
+        currentRoom.AddChild(player);
         currentRoom.GetGate(gateIndex).DeployPlayer(player);
     }
 

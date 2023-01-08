@@ -15,11 +15,6 @@ public class Room : YSort
     {
         //instantiate vars
         map = Map.GetInstance();
-        //wait for tile map to replace tiles with scenes (to instantiate the gate objects)
-        /*
-        await ToSignal(GetTree(), "idle_frame");
-        FindGates();
-        */
     }
 
     //searches for gates 
