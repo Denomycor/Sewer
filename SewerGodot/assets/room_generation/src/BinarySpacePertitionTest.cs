@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public class binarySpacePertitionTest : Node2D
+public class BinarySpacePertitionTest : Node2D
 {
     [Export] int deviation = 1;
     Partition initPartition = new Partition(0,0,100,100);
@@ -9,11 +9,11 @@ public class binarySpacePertitionTest : Node2D
     [Export] int minHeight = 4;
     [Export] int size = 10;
 
-    TileMap tileMap;
+    [Export] float offset = 1.2f;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        tileMap = (TileMap)FindNode("TileMap");
         newTest(1);
     }
 
@@ -21,15 +21,16 @@ public class binarySpacePertitionTest : Node2D
         //intialize the partition list
         RandomNumberGenerator rng = new RandomNumberGenerator();
         rng.Seed = seed;
-        binarySpacePartitioning.deviation = deviation;
-        List<Partition> list = binarySpacePartitioning.binarySpacePartition(initPartition,minLength,minHeight, rng);
+        BinarySpacePartitioning.deviation = deviation;
+        List<Partition> list = BinarySpacePartitioning.binarySpacePartition(initPartition,minLength,minHeight, rng);
+        BinarySpacePartitioning.spreadPartitionsApart(list, offset);
 
         //vizualize partitions
         foreach(Partition partition in list){
             Panel panel = new Panel();
             panel.MarginRight = partition.length*size;
             panel.MarginBottom = partition.height*size;
-            panel.RectPosition = new Vector2(partition.bottomLeftCornerX, partition.bottomLeftCornerY) * size;
+            panel.RectPosition = new Vector2(partition.bottomLeftCornerX, partition.bottomLeftCornerY) * size ;
             panel.Modulate = new Color(rng.Randf(),rng.Randf(),rng.Randf());
             AddChild(panel);
         }

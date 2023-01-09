@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using Godot;
 
-public static class binarySpacePartitioning
+public static class BinarySpacePartitioning
 {
     public static float deviation = 1;
 
@@ -72,6 +72,15 @@ public static class binarySpacePartitioning
             }
         }
 
+        return list;
+    }
+
+    public static List<Partition> spreadPartitionsApart(List<Partition> list, float offset){
+        //scales partitions origin point
+        foreach(Partition partition in list){
+            partition.bottomLeftCornerX = (int)Math.Round(partition.bottomLeftCornerX * offset + 0.5f);
+            partition.bottomLeftCornerY = (int)Math.Round(partition.bottomLeftCornerY * offset + 0.5f);
+        }
         return list;
     }
 }

@@ -1,30 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/room_generation/scenes/binarySpacePertitionTest.cs" type="Script" id=1]
-[ext_resource path="res://assets/sprites/f50524ee5f161f437400aaf215c9e12f.jpg" type="Texture" id=2]
-
-[sub_resource type="TileSet" id=1]
-0/name = "blank"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 10, 10 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
+[ext_resource path="res://assets/room_generation/src/BinarySpacePertitionTest.cs" type="Script" id=1]
 
 [node name="Test" type="Node2D"]
 position = Vector2( 253, 37 )
 script = ExtResource( 1 )
 deviation = 5
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
-cell_size = Vector2( 10, 10 )
-format = 1
+offset = 1.3
