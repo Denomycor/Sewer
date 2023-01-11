@@ -5,3 +5,10 @@
 
 [node name="TestProjectile" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 4, 2 )
+scale = Vector2( 1.21429, 1.21429 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 4.5, -0.25 )

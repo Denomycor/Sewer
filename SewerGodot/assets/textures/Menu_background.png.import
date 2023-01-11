@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/upgrade_menu_1920x1080.png-17232aaf039a82b8a6d8b7f9e10bfa54.stex"
+path="res://.import/Menu_background.png-feda81c5aa2d01cc30c75f6c35e566cd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/upgrade_menu_1920x1080.png"
-dest_files=[ "res://.import/upgrade_menu_1920x1080.png-17232aaf039a82b8a6d8b7f9e10bfa54.stex" ]
+source_file="res://assets/textures/Menu_background.png"
+dest_files=[ "res://.import/Menu_background.png-feda81c5aa2d01cc30c75f6c35e566cd.stex" ]
 
 [params]
 

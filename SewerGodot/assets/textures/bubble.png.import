@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/side_menu_240x1080.png-bb8c37114ea400cbef01cb2c3aff2efd.stex"
+path="res://.import/bubble.png-a4e9df5e78917cd4475ee7b84b1534f0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/side_menu_240x1080.png"
-dest_files=[ "res://.import/side_menu_240x1080.png-bb8c37114ea400cbef01cb2c3aff2efd.stex" ]
+source_file="res://assets/textures/bubble.png"
+dest_files=[ "res://.import/bubble.png-a4e9df5e78917cd4475ee7b84b1534f0.stex" ]
 
 [params]
 

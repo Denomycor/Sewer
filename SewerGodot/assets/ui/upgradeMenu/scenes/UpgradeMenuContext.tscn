@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui/upgradeMenu/scripts/UpgradeMenuContext.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/sub_menu_upgrade_showcase.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/info_menu3.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/Gear1.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/GEar2.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/upgradeMenu/scenes/Gear_bottom.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/upgradeMenu/scenes/Gear_top.gd" type="Script" id=6]
 
 [node name="UpgradeMenuContext" type="Control"]
-margin_right = 564.0
-margin_bottom = 380.0
+margin_right = 664.0
+margin_bottom = 400.0
 script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 403, 259 )
+scale = Vector2( 1.05094, 1.05094 )
+texture = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -15,7 +24,14 @@ anchor_bottom = 1.293
 margin_right = 0.0959473
 margin_bottom = -0.142029
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 274.947, 188 )
-scale = Vector2( 0.837836, 0.90375 )
-texture = ExtResource( 2 )
+[node name="Gear_top" type="Sprite" parent="."]
+position = Vector2( 707, 92 )
+scale = Vector2( 0.781915, 0.781915 )
+texture = ExtResource( 3 )
+script = ExtResource( 6 )
+
+[node name="Gear_bottom" type="Sprite" parent="."]
+position = Vector2( 115, 408 )
+scale = Vector2( 0.520833, 0.520833 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
